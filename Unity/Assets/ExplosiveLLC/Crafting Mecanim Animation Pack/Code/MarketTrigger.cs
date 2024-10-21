@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro; 
 
-public class NewBehaviourScript : MonoBehaviour
+public class MarketTrigger : MonoBehaviour
 {
     public GameObject tradeText;         
     public GameObject marketUI;          
@@ -65,7 +65,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     // This method closes the market UI and logs a message to confirm that the market window has closed.
-    void CloseMarketWindow()
+    public void CloseMarketWindow()
     {
         marketUI.SetActive(false);   
     }
