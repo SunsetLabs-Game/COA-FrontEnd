@@ -1,79 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;  // Necesario para TextMeshPro
+using TMPro; 
 
 public class MarketTrigger : MonoBehaviour
 {
-    public GameObject tradeText;         // Texto de "Trade" que aparecerá al entrar en la zona
-    public GameObject marketUI;          // La UI del Market
-    public TextMeshProUGUI statsText;    // Área de texto para los stats de las armas
-    private bool isPlayerNearby = false; // Flag para verificar si el jugador está en la zona
+    public GameObject tradeText;         // "Trade" text that appears when entering the zone
+    public GameObject marketUI;          // Market UI
+    public TextMeshProUGUI statsText;    // Text area for displaying weapon stats
+    private bool isPlayerNearby = false; // Flag to check if the player is in the zone
 
-    // Inicialización
+    // Initializes the market system, hiding the UI and trade text, and clearing the stats text
     void Start()
     {
-        tradeText.SetActive(false);  // Esconde el texto "Trade" al principio
-        marketUI.SetActive(false);   // Esconde el UI del market al principio
-        statsText.text = "";         // Limpia el área de stats
+        tradeText.SetActive(false);
+        marketUI.SetActive(false);
+        statsText.text = "";
     }
 
-    // Detecta si el jugador entra en la zona de colisión (trigger)
+    // Detects if the player enters the trigger zone and shows the "Trade" text
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))  // Verifica si el objeto que entra es el jugador
+        if (other.CompareTag("Player"))
         {
-            tradeText.SetActive(true);   // Muestra el texto "Trade"
-            isPlayerNearby = true;       // Marca que el jugador está cerca
+            tradeText.SetActive(true);
+            isPlayerNearby = true;
         }
     }
 
-    // Detecta si el jugador sale de la zona de colisión (trigger)
+    // Detects if the player exits the trigger zone and hides the "Trade" text and market UI
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))  // Verifica si el objeto que sale es el jugador
+        if (other.CompareTag("Player"))
         {
-            tradeText.SetActive(false);  // Esconde el texto "Trade"
-            isPlayerNearby = false;      // Marca que el jugador ya no está cerca
-            CloseMarketWindow();         // Cierra el market si está abierto
+            tradeText.SetActive(false);
+            isPlayerNearby = false;
+            CloseMarketWindow();
         }
     }
 
-    // Actualiza cada frame
+    // Updates every frame to check if the player presses the "E" key to open/close the market
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))  // Si el jugador está cerca y presiona "E"
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            if (!marketUI.activeSelf)   // Si el market no está activo
+            if (!marketUI.activeSelf)
             {
-                OpenMarketWindow();     // Abre el market
+                OpenMarketWindow();
             }
             else
             {
-                CloseMarketWindow();    // Cierra el market si ya está abierto
+                CloseMarketWindow();
             }
         }
     }
 
-    // Función para abrir la ventana del market
+    // Opens the market UI
     void OpenMarketWindow()
     {
-        marketUI.SetActive(true);  // Muestra la UI del market
+        marketUI.SetActive(true);
     }
 
-    // Función para cerrar la ventana del market
+    // Closes the market UI
     public void CloseMarketWindow()
     {
-        marketUI.SetActive(false);  // Esconde la UI del market
+        marketUI.SetActive(false);
     }
 
-    // Muestra los stats de la espada
+    // Displays the stats of the sword in the statsText area
     public void ShowSwordStats()
     {
         statsText.text = "Weapon: Sword\n\nAttack: 4\nDefense: 0\nSpeed: 3\nStrength: 6";
     }
 
-    // Muestra los stats de la katana
+    // Displays the stats of the katana in the statsText area
     public void ShowKatanaStats()
     {
         statsText.text = "Weapon: Katana\n\nAttack: 3\nDefense: 0\nSpeed: 7\nStrength: 2";
