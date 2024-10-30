@@ -1,0 +1,663 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.15f1 (b58023a2b463) revision 11894819'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22631) 64bit Professional' Language: 'en' Physical Memory: 16273 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Unity\2022.3.15f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/josue/OneDrive/Escritorio/New folder/Citizen-of-Arcanis-FrontEnd/Unity
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+51413
+Successfully changed project path to: C:/Users/josue/OneDrive/Escritorio/New folder/Citizen-of-Arcanis-FrontEnd/Unity
+C:/Users/josue/OneDrive/Escritorio/New folder/Citizen-of-Arcanis-FrontEnd/Unity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [22560] Host "[IP] 192.168.100.5 [Port] 0 [Flags] 2 [Guid] 4008299067 [EditorId] 4008299067 [Version] 1048832 [Id] WindowsEditor(7,Josué) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [22560] Host "[IP] 192.168.100.5 [Port] 0 [Flags] 2 [Guid] 4008299067 [EditorId] 4008299067 [Version] 1048832 [Id] WindowsEditor(7,Josué) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 11 workers.
+Refreshing native plugins compatible for Editor in 34.42 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.15f1 (b58023a2b463)
+[Subsystems] Discovering subsystems at path C:/Unity/2022.3.15f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/josue/OneDrive/Escritorio/New folder/Citizen-of-Arcanis-FrontEnd/Unity/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon RX 5600 XT (ID=0x731f)
+    Vendor:   ATI
+    VRAM:     6103 MB
+    Driver:   32.0.11029.1008
+Initialize mono
+Mono path[0] = 'C:/Unity/2022.3.15f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Unity/2022.3.15f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Unity/2022.3.15f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56388
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Unity/2022.3.15f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005255 seconds.
+- Loaded All Assemblies, in  0.360 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.284 seconds
+Domain Reload Profiling: 643ms
+	BeginReloadAssembly (116ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (54ms)
+	LoadAllAssembliesAndSetupDomain (141ms)
+		LoadAssemblies (114ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (140ms)
+			TypeCache.Refresh (138ms)
+				TypeCache.ScanAssembly (126ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (285ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (230ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (162ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.662 seconds
+Refreshing native plugins compatible for Editor in 4.28 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.600 seconds
+Domain Reload Profiling: 1259ms
+	BeginReloadAssembly (155ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (26ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (420ms)
+		LoadAssemblies (319ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (188ms)
+			TypeCache.Refresh (166ms)
+				TypeCache.ScanAssembly (151ms)
+			ScanForSourceGeneratedMonoScriptInfo (14ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (600ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (459ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (57ms)
+			ProcessInitializeOnLoadAttributes (367ms)
+			ProcessInitializeOnLoadMethodAttributes (20ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 4.26 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3284 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 46 unused Assets / (130.9 KB). Loaded Objects now: 3757.
+Memory consumption went from 135.2 MB to 135.1 MB.
+Total: 3.753700 ms (FindLiveObjects: 0.467700 ms CreateObjectMapping: 0.237700 ms MarkObjects: 2.908100 ms  DeleteObjects: 0.139300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 43b350a4d6e6d1791af0b5038c4bea17 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 32514.586046 seconds.
+  path: Packages/com.unity.cinemachine/Editor
+  artifactKey: Guid(b46f22104d80d4c4e8d58f046ed45054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.cinemachine/Editor using Guid(b46f22104d80d4c4e8d58f046ed45054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e89f322b001edcca69676a2793681938') in 0.003309 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Packages/com.unity.cinemachine/Editor/com.unity.cinemachine.Editor.asmdef
+  artifactKey: Guid(ba8c092d026123a418fb4bfb797a7bd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.cinemachine/Editor/com.unity.cinemachine.Editor.asmdef using Guid(ba8c092d026123a418fb4bfb797a7bd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28e6aee859e57c5ffe7dea2bdbc37631') in 0.000520 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Packages/com.unity.cinemachine/package.json
+  artifactKey: Guid(7a97571b2775aab4e8bf63d9ceb96743) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.cinemachine/package.json using Guid(7a97571b2775aab4e8bf63d9ceb96743) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76cff7c7f8f8b7fd8b0345f7cdcd83e6') in 0.008296 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 30.379999 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Avatar Masks/Crafter Right Hand.mask
+  artifactKey: Guid(edcbcb5e122ba6d4cbfb7e9a98e90a8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Avatar Masks/Crafter Right Hand.mask using Guid(edcbcb5e122ba6d4cbfb7e9a98e90a8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '513042d35a0528e5fce078d1c118b6b5') in 0.001313 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.056483 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-Idle.FBX
+  artifactKey: Guid(146ee0d9785594246b326dbe93605b19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-Idle.FBX using Guid(146ee0d9785594246b326dbe93605b19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20c8d0dd8687dc460336925caf3b3539') in 0.020292 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Cheer2.FBX
+  artifactKey: Guid(412e3bab87b43eb40930fa63997967ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Cheer2.FBX using Guid(412e3bab87b43eb40930fa63997967ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0072f20e8b7bdaa4ca12969d6fe5d6ad') in 0.005465 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chair-Sit.FBX
+  artifactKey: Guid(8dec8387c07423e4bb425ba92c2460d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chair-Sit.FBX using Guid(8dec8387c07423e4bb425ba92c2460d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f767efbbd4c21a478e4cd5e4e0f16409') in 0.003675 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Cart-Push-Forward.FBX
+  artifactKey: Guid(43a2c7f778f16a945b24e5c22b156f8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Cart-Push-Forward.FBX using Guid(43a2c7f778f16a945b24e5c22b156f8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29e0e4dbf56a64e840f563c3435c5794') in 0.003871 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-WalkForward.FBX
+  artifactKey: Guid(162153b6daf740d40af9afa52412194b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-WalkForward.FBX using Guid(162153b6daf740d40af9afa52412194b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0edf450530d429a3bc3dd7a55c8c3bef') in 0.003111 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chop-Ceiling.FBX
+  artifactKey: Guid(a613ad9b8dada9947816d9232bcb718e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chop-Ceiling.FBX using Guid(a613ad9b8dada9947816d9232bcb718e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43fb5fb77a795f7de554c0f82ece4247') in 0.004040 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-Recieve.FBX
+  artifactKey: Guid(37ddfaf78534bd2439991ef23e3c19fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-Recieve.FBX using Guid(37ddfaf78534bd2439991ef23e3c19fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3939ddd758163b5a44904b1153a4e7df') in 0.004301 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Down-Loop.FBX
+  artifactKey: Guid(636353e2c4b93884b8c949783a0d8683) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Down-Loop.FBX using Guid(636353e2c4b93884b8c949783a0d8683) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58646380a8db7d195544d04acda8e095') in 0.005629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chair-Idle.FBX
+  artifactKey: Guid(c83ff7f2aed71f149b1d9208a0faa904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chair-Idle.FBX using Guid(c83ff7f2aed71f149b1d9208a0faa904) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b58067da2c1ff1a70319616a849b523') in 0.005570 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Crawl-Getup.FBX
+  artifactKey: Guid(c0ed66dd9200a584ab4b67c29a232ea2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Crawl-Getup.FBX using Guid(c0ed66dd9200a584ab4b67c29a232ea2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b2868018ea9b13b899881c54fa71ec7') in 0.003673 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Dig-Finish.FBX
+  artifactKey: Guid(3966968ae527e0441a6e598aface0074) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Dig-Finish.FBX using Guid(3966968ae527e0441a6e598aface0074) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '082d22044d162747e337fce4d70a6db4') in 0.002303 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chop-Ground.FBX
+  artifactKey: Guid(c473435b8767c2442ac77169c8a23062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chop-Ground.FBX using Guid(c473435b8767c2442ac77169c8a23062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dec25df0557e73a08d90de2521e4d3e') in 0.003345 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chop-Start.FBX
+  artifactKey: Guid(581f88efd2398e143bf15da9a761ea18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Chop-Start.FBX using Guid(581f88efd2398e143bf15da9a761ea18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c5041f6c4bc4090c273838ac81e90c7') in 0.003385 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000009 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Back-Away.FBX
+  artifactKey: Guid(571a20d340a32014a8067dc983cca12a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Back-Away.FBX using Guid(571a20d340a32014a8067dc983cca12a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a18ba10faca193aee1f18b98bfa0fc3e') in 0.002320 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000008 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Belt.FBX
+  artifactKey: Guid(cd19f108b7640ee4a918d9af8a5f1b7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Belt.FBX using Guid(cd19f108b7640ee4a918d9af8a5f1b7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fe91f9f6177d1e85766dc5be28aa5d8') in 0.002358 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000009 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Off-Bottom.FBX
+  artifactKey: Guid(3de88c1bf5e36ba4b97ad7c5f24ac189) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Off-Bottom.FBX using Guid(3de88c1bf5e36ba4b97ad7c5f24ac189) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d25906932451b2ae7d0cc359ddecf6b') in 0.002863 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000008 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Carry-WalkForward.fbx
+  artifactKey: Guid(75243bea4736f7b46ac76145abaaf175) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Carry-WalkForward.fbx using Guid(75243bea4736f7b46ac76145abaaf175) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55b59e20756ce6f19e47c87267a86951') in 0.003370 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 111
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Eat.FBX
+  artifactKey: Guid(5410acd4fb071d0488a15230c7a75de3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Eat.FBX using Guid(5410acd4fb071d0488a15230c7a75de3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b436f96d3b0c699f390ab531a662a98e') in 0.002407 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000007 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Handoff.FBX
+  artifactKey: Guid(ec8933934533fd942b5f09a437bf3a21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Handoff.FBX using Guid(ec8933934533fd942b5f09a437bf3a21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89e6dfc3c80eea35f9b6be842d06de77') in 0.003486 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Fishing-Reel.FBX
+  artifactKey: Guid(a0d464b541d1f73438385f0b4c3e7eb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Fishing-Reel.FBX using Guid(a0d464b541d1f73438385f0b4c3e7eb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1489e64666274eb6522835f6703b599c') in 0.003402 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Kneel-Idle.FBX
+  artifactKey: Guid(78e7bbb90ad91ec44a0443fef9318788) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Kneel-Idle.FBX using Guid(78e7bbb90ad91ec44a0443fef9318788) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '959aed45b5cbb374f43bdb8c7ce565f6') in 0.003924 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000009 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Pickup.FBX
+  artifactKey: Guid(63a0822800c16c94e8ab7beeca23e554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Pickup.FBX using Guid(63a0822800c16c94e8ab7beeca23e554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '635e60f785ac497a771b74d4df5b2fb2') in 0.004041 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Paint-Refill.FBX
+  artifactKey: Guid(ab65580a33b53f34d831e476b44e99d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Paint-Refill.FBX using Guid(ab65580a33b53f34d831e476b44e99d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9032b9bd4c7c929cb25858c318cf373') in 0.002877 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Dig-Scoop.FBX
+  artifactKey: Guid(e82d3a873931db34897d70fafae270d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Dig-Scoop.FBX using Guid(e82d3a873931db34897d70fafae270d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49f467ce1943e86cf6ad6dcddbc44fd7') in 0.004176 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Idle.fbx
+  artifactKey: Guid(3f6abd8e954621f4e900e2337d005751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Idle.fbx using Guid(3f6abd8e954621f4e900e2337d005751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da84fd06988da5945cc23394c87a3bc5') in 0.003433 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Off-Top.FBX
+  artifactKey: Guid(e90556770df87f642a960cef86ceaf5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Off-Top.FBX using Guid(e90556770df87f642a960cef86ceaf5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24a82f20ac50392b1bf6aa983e5570a8') in 0.003372 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Dig-Start.FBX
+  artifactKey: Guid(5225e2c93809b944186435ab794ea6b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Dig-Start.FBX using Guid(5225e2c93809b944186435ab794ea6b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5343b123a6d03610ab18a644a51dbdcf') in 0.002316 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Up.FBX
+  artifactKey: Guid(de58d0579987bb3408bc7aa8ce986dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Climb-Up.FBX using Guid(de58d0579987bb3408bc7aa8ce986dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '573b99717e1de3d6a8939699c508bf66') in 0.003308 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Fishing-Cast.FBX
+  artifactKey: Guid(aaa41add5b5136645a5989d161b49158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Fishing-Cast.FBX using Guid(aaa41add5b5136645a5989d161b49158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04ff51cd87c3c1635ab7decb6922bdf7') in 0.004226 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-Putdown.FBX
+  artifactKey: Guid(58ec9f3e52559b3418389d4b08295d60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Carry-Putdown.FBX using Guid(58ec9f3e52559b3418389d4b08295d60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a43850a388feee7d055cfc6e95ab2b0') in 0.002471 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Idle-Bored1.FBX
+  artifactKey: Guid(2fbed24d2212e604ba7db9746ad9a3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Idle-Bored1.FBX using Guid(2fbed24d2212e604ba7db9746ad9a3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd5d28cd397eab20cce3fee271739b0f') in 0.004250 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000009 seconds.
+  path: Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Back.FBX
+  artifactKey: Guid(e401d99e150277f498b33338c462c7b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExplosiveLLC/Crafting Mecanim Animation Pack/Animations/Crafter@Item-Back.FBX using Guid(e401d99e150277f498b33338c462c7b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0fd7a5f1e5a6779eab8881f4a29fb678') in 0.319750 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 118
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.383 seconds
+Refreshing native plugins compatible for Editor in 3.14 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.164 seconds
+Domain Reload Profiling: 1544ms
+	BeginReloadAssembly (137ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (35ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (182ms)
+		LoadAssemblies (239ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (12ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1165ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (474ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (64ms)
+			ProcessInitializeOnLoadAttributes (372ms)
+			ProcessInitializeOnLoadMethodAttributes (21ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 4.38 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3260 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (101.9 KB). Loaded Objects now: 3784.
+Memory consumption went from 137.0 MB to 136.9 MB.
+Total: 4.576000 ms (FindLiveObjects: 0.509300 ms CreateObjectMapping: 0.250700 ms MarkObjects: 3.695600 ms  DeleteObjects: 0.118800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 43b350a4d6e6d1791af0b5038c4bea17 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.371 seconds
+Refreshing native plugins compatible for Editor in 3.03 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.992 seconds
+Domain Reload Profiling: 1361ms
+	BeginReloadAssembly (136ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (168ms)
+		LoadAssemblies (226ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (11ms)
+			TypeCache.Refresh (5ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (992ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (514ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (66ms)
+			ProcessInitializeOnLoadAttributes (409ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 4.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3260 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (102.1 KB). Loaded Objects now: 3799.
+Memory consumption went from 138.9 MB to 138.8 MB.
+Total: 3.386800 ms (FindLiveObjects: 0.247500 ms CreateObjectMapping: 0.136000 ms MarkObjects: 2.937100 ms  DeleteObjects: 0.065500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 43b350a4d6e6d1791af0b5038c4bea17 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.433 seconds
+Refreshing native plugins compatible for Editor in 4.25 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.979 seconds
+Domain Reload Profiling: 1409ms
+	BeginReloadAssembly (146ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (35ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (213ms)
+		LoadAssemblies (276ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (16ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (979ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (507ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (406ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 4.82 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3260 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (102.0 KB). Loaded Objects now: 3814.
+Memory consumption went from 140.9 MB to 140.8 MB.
+Total: 3.930000 ms (FindLiveObjects: 0.316800 ms CreateObjectMapping: 0.189700 ms MarkObjects: 3.353300 ms  DeleteObjects: 0.069300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 43b350a4d6e6d1791af0b5038c4bea17 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 

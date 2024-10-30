@@ -903,10 +903,6 @@ namespace UnityEngine.UI
             // Create blocker GameObject.
             GameObject blocker = new GameObject("Blocker");
 
-            // Set the game object layer to match the Canvas' game object layer, as not doing this can lead to issues
-            // especially in XR applications like PolySpatial on VisionOS (UUM-62470).
-            blocker.layer = rootCanvas.gameObject.layer;
-
             // Setup blocker RectTransform to cover entire root canvas area.
             RectTransform blockerRect = blocker.AddComponent<RectTransform>();
             blockerRect.SetParent(rootCanvas.transform, false);
@@ -960,10 +956,6 @@ namespace UnityEngine.UI
             // Add button since it's needed to block, and to close the dropdown when blocking area is clicked.
             Button blockerButton = blocker.AddComponent<Button>();
             blockerButton.onClick.AddListener(Hide);
-
-            //add canvas group to ensure clicking outside the dropdown will hide it (UUM-33691)
-            CanvasGroup blockerCanvasGroup = blocker.AddComponent<CanvasGroup>();
-            blockerCanvasGroup.ignoreParentGroups = true;
 
             return blocker;
         }
