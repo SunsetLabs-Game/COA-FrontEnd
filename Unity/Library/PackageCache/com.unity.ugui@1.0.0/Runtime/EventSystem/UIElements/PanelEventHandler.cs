@@ -1,5 +1,4 @@
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UnityEngine.UIElements
 {
@@ -12,7 +11,7 @@ namespace UnityEngine.UIElements
     [AddComponentMenu("UI Toolkit/Panel Event Handler (UI Toolkit)")]
     public class PanelEventHandler : UIBehaviour, IPointerMoveHandler, IPointerUpHandler, IPointerDownHandler,
         ISubmitHandler, ICancelHandler, IMoveHandler, IScrollHandler, ISelectHandler, IDeselectHandler,
-        IPointerExitHandler, IPointerEnterHandler, IRuntimePanelComponent, IPointerClickHandler
+        IPointerExitHandler, IPointerEnterHandler, IRuntimePanelComponent
     {
         private BaseRuntimePanel m_Panel;
 
@@ -44,8 +43,6 @@ namespace UnityEngine.UIElements
         private Focusable currentFocusedElement => m_Panel?.focusController.GetLeafFocusedElement();
 
         private readonly PointerEvent m_PointerEvent = new PointerEvent();
-
-        private float m_LastClickTime = 0;
 
         protected override void OnEnable()
         {
@@ -174,9 +171,6 @@ namespace UnityEngine.UIElements
                 using (var e = PointerCancelEvent.GetPooled(m_PointerEvent))
                 {
                     SendEvent(e, eventData);
-
-                    if (e.pressedButtons == 0)
-                        PointerDeviceState.SetPlayerPanelWithSoftPointerCapture(e.pointerId, null);
                 }
             }
 
@@ -189,11 +183,6 @@ namespace UnityEngine.UIElements
                 return;
 
             m_Panel.PointerEntersPanel(m_PointerEvent.pointerId, m_PointerEvent.position);
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            m_LastClickTime = Time.unscaledTime;
         }
 
         public void OnSubmit(BaseEventData eventData)
@@ -276,13 +265,11 @@ namespace UnityEngine.UIElements
         private void SendEvent(EventBase e, Event sourceEvent)
         {
             m_Panel.SendEvent(e);
-
-            // Don't call sourceEvent.Use() because DefaultEventSystem doesn't call it either
-            // and we want to have the same behavior as much as possible.
-            // See UGUIEventSystemTests.KeyDownStoppedDoesntPreventNavigationEvents for a test requires this.
+            if (e.isPropagationStopped)
+                sourceEvent.Use();
         }
 
-        internal void Update()
+        void Update()
         {
             if (isCurrentFocusedPanel)
                 ProcessImguiEvents(currentFocusedElement ?? m_Panel.visualTree);
@@ -354,9 +341,7 @@ namespace UnityEngine.UIElements
 
         private void SendKeyUpEvent(Event e, Focusable target)
         {
-            // Use UIElementsRuntimeUtility.CreateEvent because DefaultEventSystem uses it too
-            // and we want to have the same behavior as much as possible.
-            using (var ev = (KeyUpEvent) UIElementsRuntimeUtility.CreateEvent(e))
+            using (var ev = KeyUpEvent.GetPooled('\0', e.keyCode, e.modifiers))
             {
                 ev.target = target;
                 SendEvent(ev, e);
@@ -365,9 +350,7 @@ namespace UnityEngine.UIElements
 
         private void SendKeyDownEvent(Event e, Focusable target)
         {
-            // Use UIElementsRuntimeUtility.CreateEvent because DefaultEventSystem uses it too
-            // and we want to have the same behavior as much as possible.
-            using (var ev = (KeyDownEvent) UIElementsRuntimeUtility.CreateEvent(e))
+            using (var ev = KeyDownEvent.GetPooled(e.character, e.keyCode, e.modifiers))
             {
                 ev.target = target;
                 SendEvent(ev, e);
@@ -445,11 +428,19 @@ namespace UnityEngine.UIElements
                 // Flip Y axis between input and UITK
                 var h = Screen.height;
 
-                Vector3 eventPosition = MultipleDisplayUtilities.GetRelativeMousePositionForRaycast(eventData);
-                int eventDisplayIndex = (int)eventPosition.z;
+                var eventPosition = Display.RelativeMouseAt(eventData.position);
+                if (eventPosition != Vector3.zero)
+                {
+                    // We support multiple display and display identification based on event position.
 
-                if (eventDisplayIndex > 0 && eventDisplayIndex < Display.displays.Length)
-                    h = Display.displays[eventDisplayIndex].systemHeight;
+                    int eventDisplayIndex = (int)eventPosition.z;
+                    if (eventDisplayIndex > 0 && eventDisplayIndex < Display.displays.Length)
+                        h = Display.displays[eventDisplayIndex].systemHeight;
+                }
+                else
+                {
+                    eventPosition = eventData.position;
+                }
 
                 var delta = eventData.delta;
                 eventPosition.y = h - eventPosition.y;
@@ -483,11 +474,6 @@ namespace UnityEngine.UIElements
 
                     if (eventType == PointerEventType.Down)
                     {
-                        // UUM-57082: InputSystem doesn't reset clickCount on delay until after it sends PointerDown
-                        // This is not perfect but it's the best we can do with incomplete information.
-                        if (Time.unscaledTime > self.m_LastClickTime + ClickDetector.s_DoubleClickTime * 0.001f)
-                            clickCount = 0;
-
                         // Case 1379054: UIToolkit assumes clickCount is increased before PointerDown, but UGUI does it after.
                         clickCount++;
 

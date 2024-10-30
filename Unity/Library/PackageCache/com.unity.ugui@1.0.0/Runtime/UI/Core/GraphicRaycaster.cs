@@ -140,11 +140,36 @@ namespace UnityEngine.UI
             else
                 displayIndex = currentEventCamera.targetDisplay;
 
-            Vector3 eventPosition = MultipleDisplayUtilities.GetRelativeMousePositionForRaycast(eventData);
+            // The multiple display system is not supported on all platforms, when it is not supported the returned position
+            // will be all zeros so when the returned index is 0 we will default to the event data to be safe.
+            Vector3 eventPosition = MultipleDisplayUtilities.RelativeMouseAtScaled(eventData.position);
+            if (eventPosition != Vector3.zero)
+            {
+                // We support multiple display on some platforms. When supported:
+                //  - InputSystem will set eventData.displayIndex
+                //  - Old Input System will set eventPosition.z
+#if ENABLE_INPUT_SYSTEM
+                eventPosition.z = eventData.displayIndex;
+#endif
 
-            // Discard events that are not part of this display so the user does not interact with multiple displays at once.
-            if ((int) eventPosition.z != displayIndex)
-                return;
+                // Discard events that are not part of this display so the user does not interact with multiple displays at once.
+                if ((int) eventPosition.z != displayIndex)
+                    return;
+            }
+            else
+            {
+                eventPosition = eventData.position;
+#if ENABLE_INPUT_SYSTEM
+                eventPosition.z = eventData.displayIndex;
+                if ((int) eventPosition.z != displayIndex)
+                    return;
+#elif UNITY_EDITOR
+                eventPosition.z = Display.activeEditorGameViewTarget;
+                if ((int) eventPosition.z != displayIndex)
+                    return;
+#endif
+                // We don't really know in which display the event occurred. We will process the event assuming it occurred in our display.
+            }
 
             // Convert to view space
             Vector2 pos;
@@ -192,11 +217,9 @@ namespace UnityEngine.UI
                 {
                     if (ReflectionMethodsCache.Singleton.raycast3D != null)
                     {
-                        RaycastHit hit;
-                        if (ReflectionMethodsCache.Singleton.raycast3D(ray, out hit, distanceToClipPlane, (int)m_BlockingMask))
-                        {
-                            hitDistance = hit.distance;
-                        }
+                        var hits = ReflectionMethodsCache.Singleton.raycast3DAll(ray, distanceToClipPlane, (int)m_BlockingMask);
+                        if (hits.Length > 0)
+                            hitDistance = hits[0].distance;
                     }
                 }
 #endif
