@@ -121,7 +121,7 @@ public class GraphicRaycasterTests
 
         Assert.IsNotEmpty(results, "Expected at least 1 result from a raycast ");
     }
-#if ENABLE_INPUT_SYSTEM && PACKAGE_INPUTSYSTEM
+#if ENABLE_INPUT_SYSTEM
     [UnityTest]
     public IEnumerator GraphicRaycasterIgnoresEventsFromTheWrongDisplay()
     {
