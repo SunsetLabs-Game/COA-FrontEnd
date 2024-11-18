@@ -6,7 +6,7 @@ Welcome to **Citizen of Arcanis**, a fully on-chain MMORPG set in a vast cyberpu
 ---
 
 ## 🌟 How to Contribute
-We deeply appreciate your interest in contributing to the Citizen of Arcanis project! Below are the steps to help you get started effectively. Join our contributors' community by connecting with us on Telegram.
+We deeply appreciate your interest in contributing to the Citizen of Arcanis project! Below are the steps to help you get started effectively. Join our contributors' community by connecting with us on [Telegram](https://t.me/+lkaHQ8JwkWIwMTkx).
 
 ### 1. Issue Requests
 To request or address issues:
@@ -96,13 +96,13 @@ Once you're ready:
 <table>
   <tr>
     <td align="center">
-      <img src="https://ibb.co/bKbDHm3" width="100px;" alt="Maintainer: Cristopher"/>
+      <img src="Maintainers/photo_2024-07-24_18-49-55.jpg" width="100px;" alt="Maintainer: Cristopher"/>
       <br />
       <a href="https://t.me/CristopherAguilar">Cristopher</a>
       <br />
     </td>
     <td align="center">
-      <img src="" width="100px;" alt="Maintainer: JuanDi"/>
+      <img src="Maintainers/WhatsApp Image 2024-11-18 at 14.21.42.jpeg" width="100px;" alt="Maintainer:Sebastian"/>
       <br />
       <a href="https://t.me/sebas_G11">Sebastian</a>
       <br />
