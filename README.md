@@ -108,9 +108,9 @@ Once you're ready:
       <br />
     </td>
      <td align="center">
-      <img src="Maintainers/photo_2024-07-24_18-49-55.jpg" width="100px;" alt="Maintainer: Cristopher"/>
+      <img src="Maintainers/WhatsApp Image 2024-11-18 at 14.59.09.jpeg" width="100px;" alt="Maintainer: Josué"/>
       <br />
-      <a href="https://t.me/CristopherAguilar">Cristopher</a>
+      <a href="https://t.me/Josue1908Cr">Josué</a>
       <br />
     </td>
   </tr>
