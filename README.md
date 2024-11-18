@@ -107,6 +107,12 @@ Once you're ready:
       <a href="https://t.me/sebas_G11">Sebastian</a>
       <br />
     </td>
+     <td align="center">
+      <img src="Maintainers/photo_2024-07-24_18-49-55.jpg" width="100px;" alt="Maintainer: Cristopher"/>
+      <br />
+      <a href="https://t.me/CristopherAguilar">Cristopher</a>
+      <br />
+    </td>
   </tr>
 </table>
 
