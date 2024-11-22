@@ -2,11 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages a collection of weapon GameObjects in the game.
+/// This script handles the activation and deactivation of different weapons
+/// typically attached to a player or weapon manager object.
+/// </summary>
 public class CollectionWeapons : MonoBehaviour
 {
-    public GameObject[] weapons; // Array of weapons (swords, etc.)
+    /// <summary>
+    /// Array containing all available weapon GameObjects.
+    /// Each element represents a different weapon (sword, axe, etc.) that can be activated.
+    /// </summary>
+    public GameObject[] weapons;
 
-    // Method to activate a specific sword
+    /// <summary>
+    /// Activates a specific weapon and deactivates all others.
+    /// Used when switching between different weapons in the game.
+    /// </summary>
+    /// <param name="number">The index of the weapon to activate (0-based index)</param>
     public void ActivationWeapon(int number)
     {
         // Validate that the index is within the weapon range
