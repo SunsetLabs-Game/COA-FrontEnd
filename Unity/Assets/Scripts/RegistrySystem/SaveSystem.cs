@@ -32,26 +32,20 @@ public class Save : MonoBehaviour
     {
         string playerName = inputField.text;
 
-        // Check if the text field is empty
         if (string.IsNullOrEmpty(playerName))
         {
-            // If empty, display warning and do not save
             Debug.LogWarning("The name field is empty. Please enter a name.");
             
-            // Display warning message in UI if exists
             if (warningText != null)
             {
                 warningText.text = "Please enter your name before saving.";
             }
-            return; // Exit method without saving
         }
 
-        // Save the name in PlayerPrefs
         PlayerPrefs.SetString("PlayerName", playerName);
         PlayerPrefs.Save();
         Debug.Log("Saved name: " + playerName);
 
-        // Clear warning message if saved correctly
         if (warningText != null)
         {
             warningText.text = "";

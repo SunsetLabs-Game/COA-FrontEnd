@@ -32,21 +32,16 @@ public class DroneMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Update the current angle based on speed and time
         angle += speed * Time.deltaTime;
 
-        // Calculate new position using parametric equations of a circle
         float x = centerPoint.position.x + Mathf.Cos(angle) * radius;
         float z = centerPoint.position.z + Mathf.Sin(angle) * radius;
         float y = transform.position.y; 
 
-        // Update drone position
         transform.position = new Vector3(x, y, z);
 
-        // Apply additional rotation around the right axis
         transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime);
 
-        // Make the drone face its movement direction
         Vector3 direction = new Vector3(x, y, z) - transform.position;
         transform.rotation = Quaternion.LookRotation(direction);
     }

@@ -21,19 +21,15 @@ public class ShowNameOtherScene : MonoBehaviour
     /// </summary>
     void Start()
     {
-        // Load player name from PlayerPrefs with "Player" as default value
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         playerNameTetx.text = playerName;
 
-         // Check if we're in the character selection scene
         if (SceneManager.GetActiveScene().name == "DemoSelectionCharacter")
         {
-            // Display "Welcome, [Name]" format in character selection scene
             playerNameTetx.text = "Welcome, " + playerName;
         }
         else
         {
-            // Display only the name in other scenes
             playerNameTetx.text = playerName;
         }
     }

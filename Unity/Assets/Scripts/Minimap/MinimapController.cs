@@ -10,7 +10,7 @@ public class MinimapController : MonoBehaviour
     /// Reference to the player's transform that the minimap camera will follow.
     /// Must be assigned through the Unity Inspector.
     /// </summary>
-    public Transform player; // El jugador al que seguir� el minimapa
+    public Transform player;
 
     /// <summary>
     /// Updates the minimap camera position to follow the player.
@@ -18,11 +18,10 @@ public class MinimapController : MonoBehaviour
     /// </summary>
     private void LateUpdate()
     {
-        if (player == null) return; // Ensure player reference is assigned
+        if (player == null) return;
 
-        // Update camera position to follow player while maintaining its height
         Vector3 newPosition = player.position;
-        newPosition.y = transform.position.y; // Keep height set in Inspector
+        newPosition.y = transform.position.y;
 
         transform.position = newPosition;
     }
