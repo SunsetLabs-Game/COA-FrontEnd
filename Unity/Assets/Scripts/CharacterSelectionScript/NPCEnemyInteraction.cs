@@ -1,46 +1,81 @@
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Events;
 
 /// <summary>
 /// Handles the NPC Attack Reaction
 /// </summary>
 public class NPCEnemyInteraction : MonoBehaviour
 {
-    /// <summary> Transform of the object the NPC is locked on to</summary>
+    // Placeholder functions for Animation events.
+    [HideInInspector] public UnityEvent OnFootR = new UnityEvent();
+    [HideInInspector] public UnityEvent OnFootL = new UnityEvent();
+    [HideInInspector] public UnityEvent OnStrike = new UnityEvent();
+
+    public EnemyNPCState state;
+
+    private Animator animator;
+    private NavMeshAgent agent;
+    private SphereCollider detectTrigger;
+
+    [Tooltip("Transform of the object the NPC is locked on to (The Player)")]
     [SerializeField] private Transform target;
 
-    /// <summary> Range in which the NPC can attack the player</summary>
-    [SerializeField] private float attackRange = 10f;
+    [Tooltip("Range in which the NPC can detect the player")]
+    [SerializeField] private float detectionRange = 10f;
 
-    /// <summary> Range in which the NPC can track and follow the player</summary>
+    [Tooltip("Range in which the NPC can attack the player")]
+    [SerializeField] private float attackRange = 5f;
+
+    [Tooltip("Range in which the NPC can track and follow the player after detection")]
     [SerializeField] private float trackingRange = 20f;
 
-    /// <summary> The sphere collider used as a detection trigger </summary>
-    private GameObject detectTrigger; 
+    [SerializeField] private float runSpeed = 4f;
+    [SerializeField] private float walkSpeed = 2f;
 
     void Start()
     {
-        detectTrigger = GetComponent<SphereCollider>().gameObject;
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        detectTrigger = GetComponent<SphereCollider>();
 
-        // Set the radius of the trigger to match the detection range
-        detectTrigger.GetComponent<SphereCollider>().radius = attackRange / 2;
+        agent.speed = walkSpeed;
+        state = EnemyNPCState.idle;
+        detectTrigger.radius = detectionRange / 2; // Set the radius of the trigger to match the detection range
     }
 
     void Update()
     {
         if(target != null) //The NPC is currently locked on to a player
         {
-            //Player is out of tracking range
-            if((target.position - transform.position).magnitude >= trackingRange) 
+            if (Vector3.Distance(target.position, transform.position) >= trackingRange) //Player is out of tracking range
             {
                 target = null;
+                state = EnemyNPCState.idle;
+                animator.SetBool("Walk", false);
+                animator.SetBool("Run", false);
             }
-            else if((target.position - transform.position).magnitude < 10)
+            else if (Vector3.Distance(target.position, transform.position) <= attackRange) //Player is within attacking range
             {
-                //Play attack animation
+                state = EnemyNPCState.attacking;
+                animator.SetTrigger("Attack");
             }
-            else
+            else //Keep chasing the player
             {
-                //Keep chasing the player
+                agent.SetDestination(target.position);
+
+                if(Vector3.Distance(target.position, transform.position) > (trackingRange -attackRange)/2)
+                {
+                    agent.speed = runSpeed;
+                    animator.SetBool("Run", true);
+                    state = EnemyNPCState.running;
+                }
+                else
+                {
+                    agent.speed = walkSpeed;
+                    animator.SetBool("Walk", true);
+                    state = EnemyNPCState.walking;
+                }
             }
         }
     }
@@ -50,6 +85,30 @@ public class NPCEnemyInteraction : MonoBehaviour
         if (other.CompareTag("Player")) //A Player has entered the NPC's attack range
         {
             target = other.transform;
+            agent.SetDestination(target.position);
         }
     }
+
+    #region AnimationEventHandlers
+    public void FootR()
+    {
+        OnFootR.Invoke();
+    }
+
+    public void FootL()
+    {
+        OnFootL.Invoke();
+    }
+
+    public void Strike()
+    {
+        OnStrike.Invoke();
+    }
+    #endregion
 }
+
+public enum EnemyNPCState : int
+{
+    idle, walking, running, attacking
+}
+
