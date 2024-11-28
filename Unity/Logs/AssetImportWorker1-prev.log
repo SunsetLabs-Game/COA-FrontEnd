@@ -9,14 +9,14 @@ Architecture:            x86_64
 Available memory:        15707 MB
 Using pre-set license
 Pro License: YES
-Gtk-Message: 19:53:58.467: Failed to load module "canberra-gtk-module"
-Gtk-Message: 19:53:58.467: Failed to load module "pk-gtk-module"
-Gtk-Message: 19:53:58.475: Failed to load module "canberra-gtk-module"
-Gtk-Message: 19:53:58.475: Failed to load module "pk-gtk-module"
+Gtk-Message: 11:16:07.824: Failed to load module "canberra-gtk-module"
+Gtk-Message: 11:16:07.824: Failed to load module "pk-gtk-module"
+Gtk-Message: 11:16:07.829: Failed to load module "canberra-gtk-module"
+Gtk-Message: 11:16:07.829: Failed to load module "pk-gtk-module"
 
-(Unity:1780): Gtk-CRITICAL **: 19:53:58.492: gtk_window_set_default_icon: assertion 'GDK_IS_PIXBUF (icon)' failed
+(Unity:402): Gtk-CRITICAL **: 11:16:07.855: gtk_window_set_default_icon: assertion 'GDK_IS_PIXBUF (icon)' failed
 
-(Unity:1780): GLib-GObject-CRITICAL **: 19:53:58.492: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+(Unity:402): GLib-GObject-CRITICAL **: 11:16:07.855: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
 Desktop is 1920 x 1080 @ 60 Hz
 Initialize udev device monitor.
 
@@ -32,7 +32,7 @@ AssetImportWorker1
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-35611
+33229
 Successfully changed project path to: /home/ikem/dev/os/jay/Citizen-of-Arcanis-FrontEnd/Unity
 /home/ikem/dev/os/jay/Citizen-of-Arcanis-FrontEnd/Unity
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -66,12 +66,12 @@ Successfully changed project path to: /home/ikem/dev/os/jay/Citizen-of-Arcanis-F
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [139901130019584] Host "[IP] 192.168.0.119 [Port] 0 [Flags] 2 [Guid] 1396268345 [EditorId] 1396268345 [Version] 1048832 [Id] LinuxEditor(16,192.168.0.119) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [140216518230784] Host "[IP] 192.168.1.65 [Port] 0 [Flags] 2 [Guid] 2404736006 [EditorId] 2404736006 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.65) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [139901130019584] Host "[IP] 192.168.0.119 [Port] 0 [Flags] 2 [Guid] 1396268345 [EditorId] 1396268345 [Version] 1048832 [Id] LinuxEditor(16,192.168.0.119) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [140216518230784] Host "[IP] 192.168.1.65 [Port] 0 [Flags] 2 [Guid] 2404736006 [EditorId] 2404736006 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.65) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
-Refreshing native plugins compatible for Editor in 1.72 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 2.71 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.28f1 (6bae5ce6b222)
 [Subsystems] Discovering subsystems at path /home/ikem/Unity/Hub/Editor/2022.3.28f1/Editor/Data/Resources/UnitySubsystems
@@ -88,22 +88,22 @@ L_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_ob
 _10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT
 _texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_derivatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_N
 V_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
-OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -42765952
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -1958055920
 Initialize mono
 Mono path[0] = '/home/ikem/Unity/Hub/Editor/2022.3.28f1/Editor/Data/Managed'
 Mono path[1] = '/home/ikem/Unity/Hub/Editor/2022.3.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/ikem/Unity/Hub/Editor/2022.3.28f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56780
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56402
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /home/ikem/Unity/Hub/Editor/2022.3.28f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.004477 seconds.
-- Loaded All Assemblies, in  0.265 seconds
+Registered in 0.004748 seconds.
+- Loaded All Assemblies, in  0.249 seconds
 Native extension for LinuxStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.268 seconds
-Domain Reload Profiling: 533ms
-	BeginReloadAssembly (59ms)
+- Finished resetting the current domain, in  0.231 seconds
+Domain Reload Profiling: 480ms
+	BeginReloadAssembly (56ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
@@ -112,25 +112,25 @@ Domain Reload Profiling: 533ms
 	RebuildCommonClasses (28ms)
 	RebuildNativeTypeToScriptingClass (6ms)
 	initialDomainReloadingComplete (46ms)
-	LoadAllAssembliesAndSetupDomain (127ms)
-		LoadAssemblies (59ms)
+	LoadAllAssembliesAndSetupDomain (114ms)
+		LoadAssemblies (55ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (126ms)
-			TypeCache.Refresh (125ms)
-				TypeCache.ScanAssembly (113ms)
+		AnalyzeDomain (113ms)
+			TypeCache.Refresh (112ms)
+				TypeCache.ScanAssembly (101ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (268ms)
+	FinalizeReload (231ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (214ms)
+		SetupLoadedEditorAssemblies (181ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (7ms)
+			InitializePlatformSupportModulesInManaged (8ms)
 			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (151ms)
-			ProcessInitializeOnLoadMethodAttributes (47ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (125ms)
+			ProcessInitializeOnLoadMethodAttributes (41ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -138,55 +138,55 @@ Domain Reload Profiling: 533ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.530 seconds
-Refreshing native plugins compatible for Editor in 0.89 ms, found 0 plugins.
+- Loaded All Assemblies, in  0.598 seconds
+Refreshing native plugins compatible for Editor in 1.31 ms, found 0 plugins.
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.569 seconds
-Domain Reload Profiling: 1099ms
-	BeginReloadAssembly (98ms)
+- Finished resetting the current domain, in  0.658 seconds
+Domain Reload Profiling: 1256ms
+	BeginReloadAssembly (105ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (18ms)
-	RebuildCommonClasses (34ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (42ms)
-	LoadAllAssembliesAndSetupDomain (346ms)
-		LoadAssemblies (220ms)
+		CreateAndSetChildDomain (17ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (428ms)
+		LoadAssemblies (269ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (173ms)
-			TypeCache.Refresh (150ms)
-				TypeCache.ScanAssembly (136ms)
-			ScanForSourceGeneratedMonoScriptInfo (15ms)
-			ResolveRequiredComponents (7ms)
-	FinalizeReload (570ms)
+		AnalyzeDomain (216ms)
+			TypeCache.Refresh (181ms)
+				TypeCache.ScanAssembly (163ms)
+			ScanForSourceGeneratedMonoScriptInfo (23ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (658ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (427ms)
+		SetupLoadedEditorAssemblies (454ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (6ms)
-			SetLoadedEditorAssemblies (3ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (46ms)
-			ProcessInitializeOnLoadAttributes (351ms)
-			ProcessInitializeOnLoadMethodAttributes (17ms)
-			AfterProcessingInitializeOnLoad (3ms)
+			BeforeProcessingInitializeOnLoad (53ms)
+			ProcessInitializeOnLoadAttributes (359ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (3ms)
 Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Refreshing native plugins compatible for Editor in 0.78 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 1.04 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3754 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 48 unused Assets / (122.7 KB). Loaded Objects now: 4227.
-Memory consumption went from 140.6 MB to 140.5 MB.
-Total: 3.575571 ms (FindLiveObjects: 0.289001 ms CreateObjectMapping: 0.142865 ms MarkObjects: 2.850680 ms  DeleteObjects: 0.291915 ms)
+Unloading 48 unused Assets / (122.9 KB). Loaded Objects now: 4227.
+Memory consumption went from 140.7 MB to 140.6 MB.
+Total: 3.510209 ms (FindLiveObjects: 0.245913 ms CreateObjectMapping: 0.115632 ms MarkObjects: 2.863427 ms  DeleteObjects: 0.283861 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -200,3 +200,107 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 59228.187360 seconds.
+  path: Assets/TextMesh Pro/Sprites/Copia de NEGRO PNG.png
+  artifactKey: Guid(736e0896b80ef18b6a006451aed7b71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Sprites/Copia de NEGRO PNG.png using Guid(736e0896b80ef18b6a006451aed7b71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf803d85a8d4df5305df411d75d18471') in 0.047171 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 48.760162 seconds.
+  path: Assets/Devion Games/Third Person Controller/Example/Art/Animations/Interaction/Pickup.fbx
+  artifactKey: Guid(ceb00c6db16b91745bf6ca2a9bfdeb8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Third Person Controller/Example/Art/Animations/Interaction/Pickup.fbx using Guid(ceb00c6db16b91745bf6ca2a9bfdeb8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42c6616329634cb2e0b91baee4d2f3ce') in 0.178946 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 182
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Devion Games/Third Person Controller/Example/Art/Animations/Bow/Materials/Arrow_DIFF.mat
+  artifactKey: Guid(d71598edb96136846b613944fc2d533b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Third Person Controller/Example/Art/Animations/Bow/Materials/Arrow_DIFF.mat using Guid(d71598edb96136846b613944fc2d533b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37dd94c914f990d0aad96c95bc4a19e0') in 0.270851 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 3.123314 seconds.
+  path: Assets/Devion Games/Third Person Controller/Example/Art/Animations/Bow/Materials/Bow_DIFF.mat
+  artifactKey: Guid(9bd93a527a26e6348bf1239902e4d439) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Third Person Controller/Example/Art/Animations/Bow/Materials/Bow_DIFF.mat using Guid(9bd93a527a26e6348bf1239902e4d439) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa2d7f223458ca9aa10630903ac001ff') in 0.012295 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 2.384781 seconds.
+  path: Assets/Devion Games/Inventory System/Examples/Models/Trees/Pine/Materials/branches_3.mat
+  artifactKey: Guid(9bb382d16b4de1e40a6e1a2f9cba72f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Inventory System/Examples/Models/Trees/Pine/Materials/branches_3.mat using Guid(9bb382d16b4de1e40a6e1a2f9cba72f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d2cf1f6f70a2080cc687097478c83d4') in 0.131880 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Devion Games/Third Person Controller/Example/Art/Animations/Bow/Materials/Erika_Archer_Clothes_diffuse.mat
+  artifactKey: Guid(6ee2a67374f7a83438cd1b9b4bba0c7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Third Person Controller/Example/Art/Animations/Bow/Materials/Erika_Archer_Clothes_diffuse.mat using Guid(6ee2a67374f7a83438cd1b9b4bba0c7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1deecbc0f022e490e9bccf06e1c5ee32') in 0.013624 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Devion Games/Inventory System/Examples/Models/Potions/Materials/Cork.mat
+  artifactKey: Guid(bcbc8f3d5fe44ce4d9075a1b0bba28d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Inventory System/Examples/Models/Potions/Materials/Cork.mat using Guid(bcbc8f3d5fe44ce4d9075a1b0bba28d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec26bacd1a726f021d8ee0d707fc1ca7') in 0.005785 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Devion Games/Third Person Controller/Example/Art/Default Avatar/Materials/eyes_color_map.mat
+  artifactKey: Guid(d02a603f22e1c8942b449c68f0a2e9ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Third Person Controller/Example/Art/Default Avatar/Materials/eyes_color_map.mat using Guid(d02a603f22e1c8942b449c68f0a2e9ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ad10c2fffd347ecaae8c3b99fe49d51') in 0.006840 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Devion Games/Inventory System/Examples/Particle Effects/ShurikenMagic/ParticleMaterials/Lights/compassStarAdd.mat
+  artifactKey: Guid(a7ce0e835fd586e49b5d1efd2919b89a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Inventory System/Examples/Particle Effects/ShurikenMagic/ParticleMaterials/Lights/compassStarAdd.mat using Guid(a7ce0e835fd586e49b5d1efd2919b89a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da6c5fea1cb39eff78aae0ebb0530bc1') in 0.004605 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.142440 seconds.
+  path: Assets/Devion Games/Third Person Controller/Example/Particles/Impact/Materials/Misc/GlowCircle Add.mat
+  artifactKey: Guid(cd8002f70c22e4840bffd510c84d3c10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Devion Games/Third Person Controller/Example/Particles/Impact/Materials/Misc/GlowCircle Add.mat using Guid(cd8002f70c22e4840bffd510c84d3c10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '40af45a29f834bbc5578a15eb257099f') in 0.034779 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/PolygonSciFiCity/Materials/PolygonScifi_01_A_TriPlanar.mat
+  artifactKey: Guid(bdfd86bb68e6e72419cbf417c2a6362d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonSciFiCity/Materials/PolygonScifi_01_A_TriPlanar.mat using Guid(bdfd86bb68e6e72419cbf417c2a6362d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fef163955e23b4b8ad968a6b4f675636') in 0.086509 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/PolygonSciFiCity/Materials/PolygonScifi_01_A.mat
+  artifactKey: Guid(06d40dc2e1401784eb420a0d2d5d7235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonSciFiCity/Materials/PolygonScifi_01_A.mat using Guid(06d40dc2e1401784eb420a0d2d5d7235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '539c1b1b097a846c4088c30dc7e5c040') in 0.038124 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 107.514555 seconds.
+  path: Assets/TextMesh Pro/Sprites/Copia de NEGRO PNG 1.png
+  artifactKey: Guid(9be97ec7a6badb740a12abdcbfcbf463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Sprites/Copia de NEGRO PNG 1.png using Guid(9be97ec7a6badb740a12abdcbfcbf463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8932126b157770089f74a8e0ca033595') in 0.006762 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
