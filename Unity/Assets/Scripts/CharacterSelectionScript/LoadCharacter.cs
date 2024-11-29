@@ -41,7 +41,13 @@ public class LoadCharacter : MonoBehaviour
         }
 
         GameObject prefab = characterPrefab[selectedCharacter];
-        GameObject clone = Instantiate(prefab, spawnPoint.position, Quaternion.identity); 
+        GameObject clone = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+
+        MinimapController minimapController = FindObjectOfType<MinimapController>();
+        if (minimapController != null)
+        {
+            minimapController.player = clone.transform;
+        }
 
         if (label != null)
         {
