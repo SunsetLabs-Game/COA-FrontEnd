@@ -25,4 +25,17 @@ public class MinimapController : MonoBehaviour
 
         transform.position = newPosition;
     }
+
+    private void Start()
+    {
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+        }
+    }
 }
+
