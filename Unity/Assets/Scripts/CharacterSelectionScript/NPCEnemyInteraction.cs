@@ -58,6 +58,7 @@ public class NPCEnemyInteraction : MonoBehaviour
             else if (Vector3.Distance(target.position, transform.position) <= attackRange) //Player is within attacking range
             {
                 state = EnemyNPCState.attacking;
+                transform.LookAt(target);
                 animator.SetTrigger("Attack");
             }
             else //Keep chasing the player
