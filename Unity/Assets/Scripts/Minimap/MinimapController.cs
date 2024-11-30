@@ -1,41 +1,17 @@
 using UnityEngine;
 
-/// <summary>
-/// Controls the minimap camera behavior by following the player's position.
-/// This script should be attached to the minimap camera object in the scene.
-/// </summary>
 public class MinimapController : MonoBehaviour
 {
-    /// <summary>
-    /// Reference to the player's transform that the minimap camera will follow.
-    /// Must be assigned through the Unity Inspector.
-    /// </summary>
-    public Transform player;
+    public Transform player; // El jugador al que seguirá el minimapa
 
-    /// <summary>
-    /// Updates the minimap camera position to follow the player.
-    /// Called after all Update functions have been called.
-    /// </summary>
     private void LateUpdate()
     {
-        if (player == null) return;
+        if (player == null) return; // Asegúrate de que el jugador está asignado
 
+        // Actualizar la posición de la cámara para que siga al jugador
         Vector3 newPosition = player.position;
-        newPosition.y = transform.position.y;
+        newPosition.y = transform.position.y; // Mantener la altura configurada en el Inspector
 
         transform.position = newPosition;
     }
-
-    private void Start()
-    {
-        if (player == null)
-        {
-            GameObject playerObject = GameObject.FindWithTag("Player");
-            if (playerObject != null)
-            {
-                player = playerObject.transform;
-            }
-        }
-    }
 }
-

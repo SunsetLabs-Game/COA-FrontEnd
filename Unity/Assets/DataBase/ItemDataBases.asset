@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a78acd5557204d499bcf3420fd4ee78, type: 3}
-  m_Name: 
+  m_Name: Bread
   m_EditorClassIdentifier: 
   m_Id: 2a4697ee-6496-4cf9-90f0-dab307385532
   m_ItemName: Bread
@@ -110,6 +110,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &-6439570178843949536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fccac83a2fa2245991bffe45a6cdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GroupName: Weapons
+  m_Items: []
+  m_Amounts: 
+  m_Modifiers: []
 --- !u!114 &-4891652981039840354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,10 +136,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4abab319188bac4a8515c585b13ba9d, type: 3}
-  m_Name: 
+  m_Name: None
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 0}
-  name: None
+  name: Default
   m_EditorColor: {r: 0, g: 0, b: 0, a: 0}
   m_Cooldown: 1
 --- !u!114 &-3821580593361293463
@@ -150,7 +166,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a78acd5557204d499bcf3420fd4ee78, type: 3}
-  m_Name: 
+  m_Name: Holy Sword
   m_EditorClassIdentifier: 
   m_Id: a2312275-b8a7-4f7c-b825-c4e5f1f41d29
   m_ItemName: Holy Sword
@@ -232,7 +248,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a78acd5557204d499bcf3420fd4ee78, type: 3}
-  m_Name: 
+  m_Name: Pickaxe
   m_EditorClassIdentifier: 
   m_Id: 56118064-8deb-4b31-a5fe-75bb1a565703
   m_ItemName: Pickaxe
@@ -462,13 +478,15 @@ MonoBehaviour:
   - {fileID: 6849256778885962649}
   - {fileID: 6535490068005372283}
   - {fileID: -874172357002445561}
+  - {fileID: 7251798501384796589}
   currencies:
   - {fileID: -7846161086400767772}
   raritys: []
   categories:
   - {fileID: -4891652981039840354}
   equipments: []
-  itemGroups: []
+  itemGroups:
+  - {fileID: -6439570178843949536}
   settings:
   - {fileID: -2625861853638230369}
   - {fileID: -3821580593361293463}
@@ -485,7 +503,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a78acd5557204d499bcf3420fd4ee78, type: 3}
-  m_Name: 
+  m_Name: Hammer
   m_EditorClassIdentifier: 
   m_Id: 42d6cdb6-aa15-46ac-aa75-d5dcebbc2b31
   m_ItemName: Hammer
@@ -535,7 +553,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a78acd5557204d499bcf3420fd4ee78, type: 3}
-  m_Name: 
+  m_Name: Axe
   m_EditorClassIdentifier: 
   m_Id: 25d2453e-c0f5-4ae1-b3f7-6473f79ac9a0
   m_ItemName: Axe
@@ -575,3 +593,46 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &7251798501384796589
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14be5e3e6cf2204293682bf65bce5dc, type: 3}
+  m_Name: Sci-Fi Rifle
+  m_EditorClassIdentifier: 
+  m_Id: 1b8016e5-6f62-4fb5-83c3-c7e5cff75d5e
+  m_ItemName: Sci-Fi Rifle
+  m_UseItemNameAsDisplayName: 1
+  m_DisplayName: New Item
+  m_Icon: {fileID: 21300000, guid: 4d36cc7384c60a04abc0a8d96d63b672, type: 3}
+  m_Prefab: {fileID: 1741617204326555034, guid: d5cb5e2325b901647ac52a3170be082f, type: 3}
+  m_Description: A futuristic rifle designed for advanced combat
+  m_Category: {fileID: -4891652981039840354}
+  m_IsSellable: 1
+  m_BuyPrice: 0
+  m_CanBuyBack: 1
+  m_BuyCurrency: {fileID: -7846161086400767772}
+  m_SellPrice: 0
+  m_SellCurrency: {fileID: -7846161086400767772}
+  m_Stack: 1
+  m_MaxStack: 1
+  m_IsDroppable: 1
+  m_DropSound: {fileID: 0}
+  m_OverridePrefab: {fileID: 0}
+  m_IsCraftable: 0
+  m_CraftingDuration: 2
+  m_UseCraftingSkill: 0
+  m_SkillWindow: Skills
+  m_CraftingSkill: {fileID: 0}
+  m_RemoveIngredientsWhenFailed: 0
+  m_MinCraftingSkillValue: 0
+  m_CraftingAnimatorState: Blacksmithy
+  m_CraftingModifier:
+    modifiers: []
+  ingredients: []
+  properties: []

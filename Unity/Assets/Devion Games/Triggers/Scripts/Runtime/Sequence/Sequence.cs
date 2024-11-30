@@ -124,7 +124,6 @@ namespace DevionGames
                 {
                     if (this.m_ActionStatus != ActionStatus.Running)
                     {
-
                         this.m_Actions[m_ActionIndex].OnStart();
                     }
                     this.m_ActionStatus = this.m_Actions[this.m_ActionIndex].OnUpdate();

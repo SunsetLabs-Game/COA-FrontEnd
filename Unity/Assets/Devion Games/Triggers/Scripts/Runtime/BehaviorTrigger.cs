@@ -51,6 +51,7 @@ namespace DevionGames
             //Check for key down and if trigger input type supports key.
             if (Input.GetKeyDown(key) && triggerType.HasFlag<TriggerInputType>(TriggerInputType.Key) && InRange && IsBestTrigger())
             {
+                print(5);
                 Use();
             }
             if (this.m_Interruptable && this.InUse && (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5f))
