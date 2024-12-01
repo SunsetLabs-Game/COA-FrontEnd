@@ -1,9 +1,7 @@
-﻿
+﻿using UnityEngine;
 using DevionGames.UIWidgets;
-
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 
 namespace DevionGames.InventorySystem
