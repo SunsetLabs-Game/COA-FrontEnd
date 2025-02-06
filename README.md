@@ -96,12 +96,6 @@ Once you're ready:
 <table>
   <tr>
     <td align="center">
-      <img src="Maintainers/photo_2024-07-24_18-49-55.jpg" width="100px;" alt="Maintainer: Cristopher"/>
-      <br />
-      <a href="https://t.me/CristopherAguilar">Cristopher</a>
-      <br />
-    </td>
-    <td align="center">
       <img src="Maintainers/WhatsApp Image 2024-11-18 at 15.05.31.jpeg" width="100px;" alt="Maintainer:Sebastian"/>
       <br />
       <a href="https://t.me/sebas_G11">Sebastian</a>
