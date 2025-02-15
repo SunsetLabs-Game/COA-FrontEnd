@@ -12,13 +12,21 @@ public class AttackState : AIState
 
     public override AIState StateUpdater(CharacterManager characterManager)
     {
+        CharacterMovement movement = characterManager.MovementManager;
+
         if (characterManager.performingAction || characterManager.Target == null)
         {
             return this;
         }
 
-        characterManager.AnimatorManagaer.SetBlendTreeParameter(0f, 0f, false, Time.deltaTime);
+        if(characterManager.Target.isDead)
+        {
+            return this;
+        }
 
+        movement.RotateTowardsTarget();
+        characterManager.AnimatorManagaer.SetBlendTreeParameter(0f, 0f, false, Time.deltaTime);
+        
         if (willPerformCombo && hasPerformedCombo != true)
         {
             if(currentAttack.comboAction != null)
@@ -29,7 +37,8 @@ public class AttackState : AIState
             }
         }
 
-        if(!hasPerformedAttack)
+        movement.HandleRotationWhileAttacking(characterManager);
+        if (!hasPerformedAttack)
         {
             if(characterManager.CombatManager.currentRecovery > 0)
             {
@@ -43,6 +52,8 @@ public class AttackState : AIState
             PerformAttack(characterManager);
             return this;
         }
+
+        movement.HandleRotationWhileAttacking(characterManager);
         return SwitchState(characterManager, characterManager.Combat);
     }
 

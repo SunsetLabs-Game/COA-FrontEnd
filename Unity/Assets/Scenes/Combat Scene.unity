@@ -588,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 220731484}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9871292, y: 0.58824456, z: 1.8676558}
+  m_LocalPosition: {x: -3.9993973, y: 0.58824456, z: 1.8806648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -802,8 +802,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291769260}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06379892, y: 0.394183, z: -0.027442535, w: 0.91640407}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.06373664, y: 0.39625615, z: -0.027586859, w: 0.9155096}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1764,7 +1764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927564344}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.052074023, y: 0.39450175, z: -0.022399176, w: 0.917145}
+  m_LocalRotation: {x: 0.052023187, y: 0.39657652, z: -0.022516977, w: 0.9162498}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2399,8 +2399,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374046900}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03812375, y: 0.3947967, z: -0.01639859, w: 0.91783077}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.038086515, y: 0.39687303, z: -0.016484825, w: 0.91693485}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3137,8 +3137,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096253978}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.038123775, y: 0.39479685, z: -0.016398607, w: 0.9178307}
-  m_LocalPosition: {x: -3.9871292, y: 0.58824456, z: 1.8676558}
+  m_LocalRotation: {x: 0.038086515, y: 0.3968733, z: -0.01648484, w: 0.9169347}
+  m_LocalPosition: {x: -3.9993973, y: 0.58824456, z: 1.8806648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7809,7 +7809,7 @@ MonoBehaviour:
   isAttacking: 0
   performingAction: 0
   currentTeam: 0
-  characterType: 1
+  characterType: 0
   stopDistance: 1.85
   sphereRadius: 8.5
   targetMask:
@@ -7961,7 +7961,7 @@ MonoBehaviour:
   isAttacking: 0
   performingAction: 0
   currentTeam: 1
-  characterType: 0
+  characterType: 1
   stopDistance: 1.55
   sphereRadius: 8.5
   targetMask:
@@ -12237,7 +12237,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.5, z: 0.045}
+  m_Size: {x: 0.2, y: 0.6, z: 0.045}
   m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
