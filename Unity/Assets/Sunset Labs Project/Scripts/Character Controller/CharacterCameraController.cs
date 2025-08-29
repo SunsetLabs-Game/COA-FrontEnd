@@ -38,9 +38,9 @@ public class CharacterCameraController : MonoBehaviour
     {
         characterManager = GetComponent<CharacterManager>();
 
-        CrossHairImg = GameObjectFinder.GetComponentByName<Image>("Crosshair");
-        MainVirtualCamera = GameObjectFinder.GetComponentByName<CinemachineCamera>("Main Virtual Camera");
-        ShooterVirtualCamera = GameObjectFinder.GetComponentByName<CinemachineCamera>("Gun Virtual Camera");
+        CrossHairImg = GameObjectTool.GetComponentByName<Image>("Crosshair");
+        MainVirtualCamera = GameObjectTool.GetComponentByName<CinemachineCamera>("Main Virtual Camera");
+        ShooterVirtualCamera = GameObjectTool.GetComponentByName<CinemachineCamera>("Gun Virtual Camera");
 
         panTilt = ShooterVirtualCamera.GetComponent<CinemachinePanTilt>();
         inputAxisController = ShooterVirtualCamera.GetComponent<CinemachineInputAxisController>();

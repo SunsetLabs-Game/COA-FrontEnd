@@ -72,6 +72,10 @@ public class DialogueManager : MonoBehaviour
             character = npc;
         }
 
+        if (NPCController.Instance != null && NPCController.Instance.Mercenary != null)
+        {
+            NPCController.Instance.Mercenary.hasAssignment = false;
+        }
         dialogueIsPlaying = true;
         dialogueUIPanel.gameObject.SetActive(true);
         dialogueUIPanel.DisableUIChoices();
@@ -123,9 +127,8 @@ public class DialogueManager : MonoBehaviour
         // If a duel was triggered, inform CombatManager and load the combat scene
         if (duelTriggered)
         {
-            CombatManager.Instance.StartDuel(character.CombatManager.CombatCharacter.characterManager);
+            CombatManager.Instance.StartDuel(NPCController.Instance.Player, character);
         }
-        else { CombatManager.Instance.hasMercenary = false; }
     }
 
     private void CheckWhoIsSpeaking(List<string> currentTag)

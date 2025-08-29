@@ -1,23 +1,34 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Pool;
 using Unity.Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 
 #region Enums
-
-public enum DrivingBehavior 
+public enum DriverExperience { Novice, Mid, Expert }
+public enum CornerBoundary 
 { 
-    Traffic,
-    Pursuit,
-    Racing
+    NorthLeft,
+    NorthRight,
+    SouthLeft,
+    SouthRight,
+    None
 }
 
-public enum DriverExperience
+public enum TileDirection
 {
-    Novice,
-    Mid_Snr,
-    Expert
+    Left,
+    Right,
+    North,
+    South,
+    Ignore,
+}
+
+public enum TileType
+{
+    Fence,
+    Normal,
+    CornerPiece
 }
 
 public enum ItemType
@@ -26,23 +37,10 @@ public enum ItemType
     Collectible
 }
 
-public enum CompanionState
+public enum CombatMentalState
 {
     Friendly,
     High_Alert
-}
-
-public enum CarDrive_Type
-{
-    AllWheels,
-    RearWheels,
-    FrontWheels
-}
-
-public enum SpeedType
-{
-    MPH,
-    KPH
 }
 
 public enum DuelState
@@ -50,14 +48,8 @@ public enum DuelState
     Win,
     Draw,
     Lost,
+    None,
     OnGoing
-}
-
-public enum BrakeCondition
-{
-    NeverBrake,
-    TargetDirectionDifference,
-    TargetDistance
 }
 
 public enum ItemBoxTier //More For Design
@@ -72,15 +64,6 @@ public enum WeaponType
 {
     Gun,
     Melee
-}
-
-public enum WheelCount
-{
-    Two = 2,
-    Three = 3,
-    Four = 4,
-    Six = 6,
-    Eight = 8
 }
 
 #endregion
@@ -149,14 +132,12 @@ public class ItemClass
 [System.Serializable]
 public class RewardBox
 {
-    public string boxname;
     public List<ItemClass> itemsList = new();
     public bool FinishedCleaning { get; private set; }
 
-    public void FillUpBox(ItemBox itemBox, ItemClass reward)
+    public void AddItemToBox(ItemClass reward)
     {
         FinishedCleaning = false;
-        boxname = itemBox.boxName;
         itemsList.Add(reward);
     }
 
@@ -168,7 +149,6 @@ public class RewardBox
 
     public void EmptyBox()
     {
-        boxname = "";
         itemsList.Clear();
         FinishedCleaning = true;
     }
@@ -178,7 +158,7 @@ public class RewardBox
         for (int i = 0; i < itemsList.Count; i++)
         {
             ItemClass itemClass = itemsList[i];
-            CharacterInventoryManager.Instance.AddUnExistingItem(itemClass);
+            CharacterInventoryManager.Instance.HandleItemAddition(itemClass);
         }
         EmptyBox();
     }
@@ -264,7 +244,7 @@ public class BulletFX
     public BulletFX(GameObject decalPrefab, ParticleSystem impactFXPrefab, MonoBehaviour context)
     {
         bulletImpactFX = GameObject.Instantiate(impactFXPrefab);
-        bulletDecalPool = ObjectPooler.GameObjectPool(decalPrefab);
+        bulletDecalPool = ObjectPooler.GameObjectPool(decalPrefab, 50, 100);
         this.context = context;
     }
 
@@ -319,198 +299,152 @@ public class EvenOrOddAttribute : PropertyAttribute
     }
 }
 
-[System.Serializable]
-/// <summary>
-/// Tracks reservations in a spatial grid to detect vehicle conflicts.
-/// Highly optimized for low-GC and fast lookups.
-/// </summary>
-public class ReservationGridClass
+public class ReadOnlyInspectorAttribute : PropertyAttribute
 {
-    private const float CellSize = 10f;
-
-    private readonly Stack<List<PathReservation>> listPool = new();
-    private readonly Dictionary<Vector2Int, List<PathReservation>> grid = new();
-
-    /// <summary>
-    /// Clears all reservations belonging to the specified vehicle.
-    /// Should be called each frame before registering new reservations for that vehicle.
-    /// </summary>
-    public void ClearReservations(int vehicleId)
-    {
-        var cellsToClear = new List<Vector2Int>();
-
-        foreach (var kvp in grid)
-        {
-            var list = kvp.Value;
-            list.RemoveAll(r => r.Vehicle_ID == vehicleId);
-
-            if (list.Count == 0)
-            {
-                listPool.Push(list);
-                cellsToClear.Add(kvp.Key);
-            }
-        }
-
-        foreach (var cell in cellsToClear)
-        {
-            grid.Remove(cell);
-        }
-    }
-
-    /// <summary>
-    /// Registers a reservation in the grid.
-    /// </summary>
-    public void RegisterReservation(PathReservation res)
-    {
-        Vector2Int cell = GetCell(res.position);
-
-        if (!grid.TryGetValue(cell, out var list))
-        {
-            list = listPool.Count > 0
-                ? listPool.Pop()
-                : new List<PathReservation>(capacity: 4);
-
-            grid[cell] = list;
-        }
-
-        list.Add(res);
-    }
-
-    /// <summary>
-    /// Checks whether the given reservation conflicts with any others in nearby cells.
-    /// </summary>
-    public bool CheckConflict(PathReservation res, out PathReservation other)
-    {
-        Vector2Int cell = GetCell(res.position);
-
-        // Check the cell plus 8 neighbors
-        for (int dx = -1; dx <= 1; dx++)
-        {
-            for (int dz = -1; dz <= 1; dz++)
-            {
-                var neighborCell = new Vector2Int(cell.x + dx, cell.y + dz);
-
-                if (!grid.TryGetValue(neighborCell, out var list))
-                    continue;
-
-                for (int i = 0; i < list.Count; i++)
-                {
-                    var existing = list[i];
-
-                    if (existing.Vehicle_ID == res.Vehicle_ID)
-                        continue;
-
-                    float sqrDist = (res.position - existing.position).sqrMagnitude;
-                    float combinedRadius = res.Radius + existing.Radius;
-
-                    if (sqrDist < combinedRadius * combinedRadius)
-                    {
-                        other = existing;
-                        return true;
-                    }
-                }
-            }
-        }
-        other = default;
-        return false;
-    }
-
-    /// <summary>
-    /// Converts world position to grid cell coordinates.
-    /// </summary>
-    private Vector2Int GetCell(Vector3 pos)
-    {
-        return new Vector2Int(
-            Mathf.FloorToInt(pos.x / CellSize),
-            Mathf.FloorToInt(pos.z / CellSize)
-        );
-    }
 }
 
 [System.Serializable]
 public class WayPointPath
 {
-    [Header("Path Parameters")]
-    [SerializeField] private float[] distances;
-    [SerializeField] private Vector3[] nodePosition;
-    [field: SerializeField] public List<Transform> PathNodes { get; private set; }
+    private Vector3 _finalDestination;
 
-    public void RefreshPath(DriverExperience exp, Transform target, WayPointNode node)
+    public TrafficNode FinalDestinationNode { get; private set; }
+    public bool HasPath => PathNodes != null && PathNodes.Count > 0;
+
+    [Header("Non-expert randomization tuning")]
+    [Tooltip("Higher value -> more randomness for novices (bigger range)")]
+    [SerializeField] private int noviceMaxRange = 3;
+    [Tooltip("Higher value -> more randomness for mid-senior; lower -> more deterministic")]
+    [SerializeField] private int midSnrMaxRange = 4;
+    [field: SerializeField] public List<TrafficNode> PathNodes { get; private set; } = new();
+
+    public int PathNodeCount => PathNodes.Count;
+
+    public void RefreshPath(DriverExperience exp, Transform requester, TrafficNode finalNode, TrafficPathController controller)
+    {
+        if (controller == null)
+        {
+            RefreshPath(exp, (TrafficNode)null, finalNode);
+            return;
+        }
+        TrafficNode startNode = controller.GetClosestNodeInFrontOfObject(requester, 180f);
+        RefreshPath(exp, startNode, finalNode);
+    }
+
+    public void RefreshPath(DriverExperience exp, Transform requester, TrafficNode startNode, TrafficNode finalNode)
+    {
+        var controller = Object.FindObjectOfType<TrafficPathController>();
+        if (controller != null && requester != null)
+        {
+            startNode = controller.GetClosestNodeInFrontOfObject(requester, 180f);
+        }
+        RefreshPath(exp, startNode, finalNode);
+    }
+
+    public void RefreshPath(DriverExperience exp, TrafficNode startNode, TrafficNode finalNode)
     {
         PathNodes.Clear();
-        switch(exp)
+        if (startNode == null || finalNode == null)
         {
-            case DriverExperience.Novice:
-                HandleNonExpert(3, target, node);
-                break;
-            case DriverExperience.Mid_Snr:
-                HandleNonExpert(5, target, node);
-                break;
-            case DriverExperience.Expert:
-                HandleExpert(target, node);
-                break;
+            //CachePositionsAndDistances();
+            FinalDestinationNode = finalNode;
+            _finalDestination = finalNode != null ? finalNode.transform.position : Vector3.zero;
+            return;
         }
-        CachePositionsAndRotations();
-    }
-
-    private void HandleNonExpert(int maxRange, Transform target, WayPointNode currentNode)
-    {
-        Transform node = null;
-        while(node != target)
+        PathNodes.Add(startNode);
+        var visited = new HashSet<TrafficNode>(capacity: 32)
         {
-            int rnd = Random.Range(0, maxRange);
-            node = GetNode(rnd >= 2, target.position, currentNode);
-            PathNodes.Add(node);
-        }
-    }
+            startNode
+        };
 
-    private void HandleExpert(Transform target, WayPointNode currentNode)
-    {
-        Transform node = null;
-        while (node != target)
-        {
-            node = GetNode(true, target.position, currentNode);
-            PathNodes.Add(node);
-        }
-    }
+        TrafficNode current = startNode;
 
-    private Transform GetNode(bool distanceBased, Vector3 target, WayPointNode node)
-    {
-        if(distanceBased != true)
-        {
-            return node.GetNextNodeRandomly().transform;
-        }
-        return node.GetNextNodeDistanceBased(target).transform;
-    }
+        int safety = 0;
+        const int maxSteps = 10; // existing constraint
 
-    private void CachePositionsAndRotations()
-    {
-        int count = PathNodes.Count;
-        distances = new float[count + 1];
-        nodePosition = new Vector3[count + 1];
-        
-        float accumulateDistance = 0;
-        for (int i = 0; i < count; ++i)
+        while (current != null && current != finalNode && ++safety <= maxSteps)
         {
-            var t1 = PathNodes[(i) % count];
-            var t2 = PathNodes[(i + 1) % count];
-            if (t1 == null || t2 == null)
+            TrafficNode next;
+            if (exp == DriverExperience.Expert)
             {
-                continue;
+                next = current.GetNextNodeDistanceBased(finalNode.transform.position, visited);
+            }
+            else
+            {
+                int maxRange = (exp == DriverExperience.Novice) ? noviceMaxRange : midSnrMaxRange;
+                bool preferDistance = Random.Range(0, Mathf.Max(1, maxRange)) >= 2;
+                next = current.GetNextNode(preferDistance, finalNode.transform.position, visited);
             }
 
-            Vector3 p1 = t1.position;
-            Vector3 p2 = t2.position;
-            nodePosition[i] = PathNodes[i % count].position;
+            if (next == null)
+            {
+                break;
+            }
 
-            distances[i] = accumulateDistance;
-            accumulateDistance += (p1 - p2).magnitude;
+            if (!PathNodes.Contains(next))
+            {
+                visited.Add(next);
+                PathNodes.Add(next);
+            }
+            current = next;
+            if (current == finalNode) break;
         }
+        FinalDestinationNode = finalNode;
+        _finalDestination = finalNode != null ? finalNode.transform.position : Vector3.zero;
     }
 
-    public RoutePoint GetRoutePoint(float dist)
+    public float DistanceToFinalDestination(Vector3 currentPosition)
     {
-        return MathPhysics_Helper.GetRoutePoint(nodePosition, distances, dist);
+        if (FinalDestinationNode == null)
+        {
+            return float.PositiveInfinity;
+        }
+        return Vector3.Distance(currentPosition, _finalDestination);
+    }
+
+    public float DistanceBetweenTwoNodes(int indexA, int indexB)
+    {
+        int count = PathNodes?.Count ?? 0;
+        if (count == 0)
+        {
+            return -1f;
+        }
+
+        if (indexA < 0 || indexB < 0 || indexA >= count || indexB >= count)
+        {
+            return -1f;
+        }
+
+        var a = PathNodes[indexA];
+        var b = PathNodes[indexB];
+        if (a == null || b == null)
+        {
+            return -1f;
+        }
+        return Vector3.Distance(a.NodePosition, b.NodePosition);
+    }
+
+    public float DistanceBetweenLastTwoNodes()
+    {
+        int c = PathNodes?.Count ?? 0;
+        if (c < 2)
+        {
+            return -1f;
+        }
+        return DistanceBetweenTwoNodes(c - 1, c - 2);
+    }
+
+    public void Clear()
+    {
+        PathNodes?.Clear();
+        FinalDestinationNode = null;
+        _finalDestination = Vector3.zero;
+    }
+
+    public void SetNonExpertRanges(int noviceRange, int midSnrRange)
+    {
+        noviceMaxRange = Mathf.Max(1, noviceRange);
+        midSnrMaxRange = Mathf.Max(1, midSnrRange);
     }
 }
 #endregion

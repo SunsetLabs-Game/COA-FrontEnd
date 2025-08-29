@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public enum AttackType
 {
@@ -24,6 +25,8 @@ public class CharacterCombat : MonoBehaviour
     [Header("Combat Status")]
     public bool canCombo;
     public AttackType attackType;
+    [SerializeField] private bool isSciFi;
+    public List<WeaponManager> enemyPossibleWeapons = new();
 
     [Header("Parameters")]
     public int damageModifier;
@@ -156,7 +159,7 @@ public class CharacterCombat : MonoBehaviour
         }
         if (CharacterInventoryManager.Instance != null)
         {
-            return CharacterInventoryManager.Instance.Panel.isMouseOverPanel;
+            return CharacterInventoryManager.Instance.Panel.IsMouseOverPanel;
         }
         return false;
     }
@@ -223,9 +226,18 @@ public class CharacterCombat : MonoBehaviour
         {
             return;
         }
-        int index = (mirrorAttack) ? colliderIndex + 1 : colliderIndex;
-        var damage = (CurrentWeapon == null) ? damageColliders[index] : CurrentWeapon.DamageCollider;
-        damage.SetColliderStatus(false);
+
+        CharacterDamageCollider damageCollider;
+        if(CurrentWeapon == null)
+        {
+            int index = (mirrorAttack) ? colliderIndex + 1 : colliderIndex;
+            damageCollider = damageColliders[index];
+        }
+        else
+        {
+            damageCollider = CurrentWeapon.DamageCollider;
+        }
+        damageCollider.SetColliderStatus(false);
     }
 
     public void ResetPerformAttack()
@@ -235,6 +247,10 @@ public class CharacterCombat : MonoBehaviour
 
     public void SetDuellingCharacter()
     {
+        if(CombatManager.Instance == null)
+        {
+            return;
+        }
         CombatManager.Instance.AssignPlayer(CombatCharacter.characterManager);
     }
 
@@ -242,10 +258,10 @@ public class CharacterCombat : MonoBehaviour
     {
         GameObject newObject = new();
 
-        CharacterDamageCollider leftLeg = GetDamageCollider("Ball_L", newObject);
-        CharacterDamageCollider rightLeg = GetDamageCollider("Ball_R", newObject);
-        CharacterDamageCollider leftHand = GetDamageCollider("Hand_L", newObject);
-        CharacterDamageCollider rightHand = GetDamageCollider("Hand_R", newObject);
+        CharacterDamageCollider leftLeg = GetDamageCollider(GameObjectName(true, "L"), newObject);
+        CharacterDamageCollider rightLeg = GetDamageCollider(GameObjectName(true, "R"), newObject);
+        CharacterDamageCollider leftHand = GetDamageCollider(GameObjectName(false, "L"), newObject);
+        CharacterDamageCollider rightHand = GetDamageCollider(GameObjectName(false, "R"), newObject);
 
         CreateHurtBox(newObject, 11);
         damageColliders = new[]{ leftHand, rightHand, leftLeg, rightLeg };
@@ -253,13 +269,27 @@ public class CharacterCombat : MonoBehaviour
         DestroyImmediate(newObject);
     }
 
+    private string GameObjectName(bool isLeg, string suffix)
+    {
+        string objectName;
+        if (isLeg)
+        {
+            objectName = (isSciFi) ? "Ball_" : "Foot.";
+        }
+        else
+        {
+            objectName = (isSciFi) ? "Hand_" : "Hand.";
+        }
+        return objectName + suffix;
+    }
+
     private CharacterDamageCollider GetDamageCollider(string name, GameObject go)
     {
         LayerMask layer = 11;
         string colliderName = name + " Damage Collider";
-        Transform parent = GameObjectFinder.FindChildRecursively(transform, name);
+        Transform parent = GameObjectTool.FindChildRecursively(transform, name);
 
-        if(GameObjectFinder.TryFindChildRecursively(parent, colliderName, out Transform t))
+        if(GameObjectTool.TryFindChildRecursively(parent, colliderName, out Transform t))
         {
             DestroyImmediate(t.gameObject);
         }
@@ -276,9 +306,8 @@ public class CharacterCombat : MonoBehaviour
 
     private void CreateHurtBox(GameObject go, LayerMask layer)
     {
-        Transform t;
         string objectName = "Body Damage Collider";
-        if (GameObjectFinder.TryFindChildRecursively(transform, objectName, out t))
+        if (GameObjectTool.TryFindChildRecursively(transform, objectName, out Transform t))
         {
             DestroyImmediate(t.gameObject);
         }
@@ -286,13 +315,13 @@ public class CharacterCombat : MonoBehaviour
 
         body.name = objectName;
         CapsuleCollider capsule = body.AddComponent<CapsuleCollider>();
-        capsule.height = 1.25f;
-        capsule.radius = 0.30f;
-        capsule.center = new Vector3(0, 0.85f, 0);
+        capsule.height = 1.50f;
+        capsule.radius = 0.425f;
+        capsule.center = new Vector3(0, 0.75f, 0);
 
         objectName = "Head Damage Collider";
-        Transform parent = GameObjectFinder.FindChildRecursively(transform, "Head");
-        if (GameObjectFinder.TryFindChildRecursively(transform, objectName, out t))
+        Transform parent = GameObjectTool.FindChildRecursively(transform, "Head");
+        if (GameObjectTool.TryFindChildRecursively(transform, objectName, out t))
         {
             DestroyImmediate(t.gameObject);
         }
@@ -300,12 +329,19 @@ public class CharacterCombat : MonoBehaviour
 
         head.name = objectName;
         SphereCollider sphere = head.AddComponent<SphereCollider>();
-        sphere.radius = 0.02f;
+        sphere.radius = 0.03f;
         sphere.center = new Vector3(0, 0.005f, 0.003f);
 
         head.layer = body.layer = layer;
         body.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         head.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        if(TryGetComponent(out CharacterController controller))
+        {
+            controller.radius = 0.3f;
+            controller.height = 1.6f;
+            controller.center = new Vector3(0,0.925f,0);
+        }
     }
 
     private void InitializeAttackActions()
@@ -320,6 +356,30 @@ public class CharacterCombat : MonoBehaviour
         {
             heavyActions[i] = Instantiate(heavyActions[i]);
             heavyActions[i].Initialize();
+        }
+    }
+
+    internal void CreateEnemyWeapons(WeaponManager exclude, WeaponManager[] potentialWeapons)
+    {
+        while (enemyPossibleWeapons.Count < 3)
+        {
+            exclude = GameObjectTool.GetRandomExcluding(exclude, potentialWeapons);
+            if (exclude == null)
+            {
+                Debug.LogError("No weapon found");
+                break;
+            }
+            Transform holder = WeaponHolder(exclude);
+            WeaponManager spawnedItem = Instantiate(exclude, holder);
+
+            spawnedItem.gameObject.SetActive(false);
+            spawnedItem.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            spawnedItem.pickableObject.SetPhysicsSystem(false);
+            if (enemyPossibleWeapons.Contains(spawnedItem) != true)
+            {
+                enemyPossibleWeapons.Add(spawnedItem);
+            }
         }
     }
 }

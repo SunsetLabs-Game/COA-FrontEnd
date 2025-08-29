@@ -104,11 +104,11 @@ public class InputFieldUI : MonoBehaviour
 
     private void SaveCharacterData()
     {
-        List<CharacterDataJSON> dataToSave = new List<CharacterDataJSON>();
+        List<CharacterDataJSON> dataToSave = new();
 
-        for(int i = 0; i < characterSelectionMenu.characterDatas.Length; i++)
+        for(int i = 0; i < characterSelectionMenu.CharacterDatas.Length; i++)
         {
-            CharacterData characterData = characterSelectionMenu.characterDatas[i];
+            CharacterData characterData = characterSelectionMenu.CharacterDatas[i];
 
             dataToSave.Add(new CharacterDataJSON{ characterName = characterData.characterName } );
             string jsonString = JsonUtility.ToJson(new CharacterDataList { characterDataJsonList = dataToSave }, true);

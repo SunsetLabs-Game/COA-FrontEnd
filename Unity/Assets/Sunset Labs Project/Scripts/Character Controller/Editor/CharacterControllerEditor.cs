@@ -1,5 +1,10 @@
-using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(CharacterCombat))]
 public class CharacterCombatEditor : Editor
@@ -16,4 +21,18 @@ public class CharacterCombatEditor : Editor
     }
 }
 
+[CustomEditor(typeof(CharacterStatistic))]
+public class CharacterStatsEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        CharacterStatistic stat = (CharacterStatistic)target;
+
+        if(GUILayout.Button("Store Material"))
+        {
+            stat.PrepareInitialMaterials();
+        }
+    }
+}
 

@@ -28,7 +28,7 @@ public class CharacterUIDisplaySlot : MonoBehaviour
         characterData.characterName = name;
 
         DisplayName.text = characterData.characterName;
-        displayImage.sprite = characterData.displayImage;
+        displayImage.sprite = characterData.DisplayImage;
     }
 
     public void DisplayCharacter()
@@ -42,10 +42,10 @@ public class CharacterUIDisplaySlot : MonoBehaviour
             {
                 characterSelectionMenu.inputFieldUI.currentUIDisplaySlot = this;
                 characterSelectionMenu.currentCharacterData = uIDisplaySlot.characterData;
-                characterSelectionMenu.displayedCharacter = uIDisplaySlot.characterData.displayedCharacter;
+                characterSelectionMenu.displayedCharacter = uIDisplaySlot.characterData.DisplayedCharacter;
             }
             characterInstance.SetActive(uIDisplaySlot == this);
-            uIDisplaySlot.uiButton.image.color = (uIDisplaySlot == this) ? Color.green : Color.blue;
+            uIDisplaySlot.uiButton.image.color = (uIDisplaySlot == this) ? Color.green : Color.white;
         }
     }
 }

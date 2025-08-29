@@ -6,7 +6,7 @@ public class CharacterDamageCollider : MonoBehaviour
     private CharacterManager characterCausingDamage;
 
     private Collider[] collidersArray;
-    private List<CharacterManager> charactersBeingDamaged = new();
+    private List<IDamagabele> DamagedObjects = new();
 
     [Header("Parameters")]
     [SerializeField] private Rigidbody rigidBody;
@@ -33,7 +33,7 @@ public class CharacterDamageCollider : MonoBehaviour
     {
         if(rigidBody == null)
         {
-            collidersArray = new Collider[10];
+            collidersArray = new Collider[15];
         }
     }
 
@@ -41,7 +41,7 @@ public class CharacterDamageCollider : MonoBehaviour
     {
         if(status == false)
         {
-            charactersBeingDamaged.Clear();
+            DamagedObjects.Clear();
         }
 
         if (rigidBody == null)
@@ -84,37 +84,35 @@ public class CharacterDamageCollider : MonoBehaviour
 
     private void DamgeEnemy(Collider other)
     {
-        CharacterManager damaged = other.GetComponentInParent<CharacterManager>();
+        var damageable = other.GetComponentInParent<IDamagabele>();
+        if(damageable == null)
+        {
+            return; 
+        }
 
-        if (damaged == null)
+        CharacterManager damaged = damageable.TakingDamage_Character();
+        if(damaged != null && damaged == characterCausingDamage)
         {
             return;
         }
-        bool sameObjectCC = (characterCausingDamage != null && characterCausingDamage == damaged);
-
-        if (sameObjectCC)
-        {
-            return;
-        }
-        HandleDamage(damaged);
+        HandleDamage(damaged, damageable);
     }
 
-    private void HandleDamage(CharacterManager damaged)
+    private void HandleDamage(CharacterManager damaged, IDamagabele damageable)
     {
-        if (damaged.isDead == true)
+        if (damaged != null && damaged.isDead == true)
         {
             return;
         }
-
-        if (charactersBeingDamaged.Contains(damaged))
+        if (DamagedObjects.Contains(damageable))
         {
             return;
         }
-        charactersBeingDamaged.Add(damaged);
-
+        DamagedObjects.Add(damageable);
         CharacterCombat combat = characterCausingDamage.CombatManager;
         AttackActions currentAttack = combat.currentAction;
+
         int damage = combat.damageModifier * currentAttack.damageValue;
-        damaged.StatsManager.TakeDamage(damage, currentAttack.attackType);
+        damageable.TakeDamage(damage, currentAttack.attackType);
     }
 }

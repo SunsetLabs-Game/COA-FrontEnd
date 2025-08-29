@@ -1,16 +1,14 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class PlayerCompanion_Combat : MonoBehaviour
 {
-    private Collider[] enemyColliders;
     private PlayerCompanion manager;
-    private readonly List<Transform> potentialTargets = new();
+    private Collider[] enemyColliders;
 
     private bool canShoot;
     public Transform target;
     private float shootingTimer = 0.0f;
-    public CompanionState companionState = CompanionState.Friendly;
+    public CharacterManager EnemyTarget { get; private set; }
 
     [Header("Weapon Parameters")]
     [SerializeField] private float inaccuracy;
@@ -37,78 +35,73 @@ public class PlayerCompanion_Combat : MonoBehaviour
     private void Start()
     {
         canShoot = true;
-        enemyColliders = new Collider[10];
+        enemyColliders = new Collider[5];
     }
 
     public void Combat_Update(float delta)
     {
-        if(CompanionState.Friendly == companionState)
+        if(manager.mentalState == CombatMentalState.Friendly)
         {
             return;
         }
 
-        if(Time.frameCount % 20 == 0)
+        bool hasReachedSearchPeriod = (Time.frameCount % 20 == 0);
+        bool noEnemy = (EnemyTarget == null || EnemyTarget.isDead);
+
+        if (hasReachedSearchPeriod && noEnemy)
         {
-            GetTargets();
+            EnemyTarget = GetTarget();
         }
         weaponManager.UpdateBullet(delta);
 
-        if(target == null)
+        if(EnemyTarget == null)
         {
             return;
         }
+
         HandleShooting(delta);
+        if (EnemyTarget.isDead)
+        {
+            manager.hasViolentTarget = false;
+        }
     }
 
-    private void GetTargets()
+    private CharacterManager GetTarget()
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, detectRadius, enemyColliders, enemyMask);
-        potentialTargets.Clear();
-
         for(int i = 0; i < count; i++)
         {
-            if(enemyColliders[i] == null)
+            Collider col = enemyColliders[i];
+            if(col == null)
             {
                 continue;
             }
 
-            //Change to CharacterManager
-            Transform t = enemyColliders[i].transform;
-            if (manager.FollowTarget == t)
+            if(GameObjectTool.TryGetComponentInParent(col.transform, out CharacterManager potentialTarget))
             {
-                continue;
-            }
+                if(potentialTarget == manager.FollowCharacter || potentialTarget.mentalState == CombatMentalState.Friendly)
+                {
+                    continue;
+                }
 
-            if(potentialTargets.Contains(t) != true && InLineOfSight(t))
-            {
-                potentialTargets.Add(t);
+                if(InLineOfSight(potentialTarget.transform) != true)
+                {
+                    continue;
+                }
+                manager.hasViolentTarget = true;
+                target = potentialTarget.transform;
+                return potentialTarget;
             }
         }
-        target = GetTarget();
-    }
-
-    private Transform GetTarget()
-    {
-        Transform target = null;
-        float maxDis = float.MaxValue;
-        for(int i = 0; i < potentialTargets.Count; i++)
-        {
-            float dis = (potentialTargets[i].position - transform.position).sqrMagnitude;
-            if(dis < maxDis)
-            {
-                maxDis = dis;
-                target = potentialTargets[i];
-            }
-        }
-        return target;
+        return null;
     }
 
     private void HandleShooting(float delta)
     {
-        if(canShoot != true)
+        if (canShoot != true)
         {
             shootingTimer -= delta;
-            if(shootingTimer <= 0)
+            if (shootingTimer <= 0)
             {
                 shootingTimer = 0;
                 canShoot = true;
@@ -124,7 +117,7 @@ public class PlayerCompanion_Combat : MonoBehaviour
     private void DisableShooting()
     {
         canShoot = false;
-        shootingTimer = shootCoolDownTime + 1.5f;
+        shootingTimer = shootCoolDownTime + 3.5f;
     }
 
     private bool InLineOfSight(Transform potentialTarget)
@@ -132,7 +125,7 @@ public class PlayerCompanion_Combat : MonoBehaviour
         Vector3 direction = (potentialTarget.position - transform.position).normalized;
 
         float viewAngle = Vector3.Angle(direction, transform.forward);
-        if(viewAngle < detectAngle/2)
+        if (viewAngle < detectAngle / 2)
         {
             return (Physics.Linecast(transform.position, potentialTarget.position, obstacleMask) != true);
         }

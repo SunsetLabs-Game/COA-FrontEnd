@@ -10,7 +10,7 @@ public class CharacterSelectionMenu : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float turnSpeed;
     [SerializeField] private CharacterUIDisplaySlot characterUIDisplaySlot;
-    [field: SerializeField] public CharacterData[] characterDatas {  get; private set; }
+    [field: SerializeField] public CharacterData[] CharacterDatas {  get; private set; }
 
     [Header("Displayed Character & UI")]
     public InputFieldUI inputFieldUI;
@@ -24,12 +24,12 @@ public class CharacterSelectionMenu : MonoBehaviour
     [SerializeField] private Transform displayedCharacterSpawnPoint;
 
     [Header("Character Selection Lists")]
-    public List<GameObject> characterInstances = new List<GameObject>();
-    public List<CharacterUIDisplaySlot> characterUIDisplaySlots = new List<CharacterUIDisplaySlot>();
+    public List<GameObject> characterInstances = new();
+    public List<CharacterUIDisplaySlot> characterUIDisplaySlots = new();
 
     private void Awake()
     {
-        characterDatas = Resources.LoadAll<CharacterData>("Character Data");
+        CharacterDatas = Resources.LoadAll<CharacterData>("Character Data");
     }
 
     private void Start()
@@ -69,12 +69,12 @@ public class CharacterSelectionMenu : MonoBehaviour
 
     private void SpawnCharacterDisplayUI()
     {
-        for(int i = 0; i < characterDatas.Length; i++)
+        for(int i = 0; i < CharacterDatas.Length; i++)
         {
             CharacterUIDisplaySlot uIDisplaySlot = Instantiate(characterUIDisplaySlot, contentDrawer);
 
-            uIDisplaySlot.Initialize(characterDatas[i], this);
-            CharacterAnimationController characterInstance = Instantiate(characterDatas[i].displayedCharacter, displayedCharacterSpawnPoint);
+            uIDisplaySlot.Initialize(CharacterDatas[i], this);
+            CharacterAnimationController characterInstance = Instantiate(CharacterDatas[i].DisplayedCharacter, displayedCharacterSpawnPoint);
 
             characterInstance.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             characterInstance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
@@ -89,19 +89,19 @@ public class CharacterSelectionMenu : MonoBehaviour
     {
         if(currentCharacterData == null)
         {
+            print("500");
             return;
         }
 
-        for(int i = 0; i < characterDatas.Length; i++)
+        for(int i = 0; i < CharacterDatas.Length; i++)
         {
-            if(currentCharacterData == characterDatas[i])
+            if(currentCharacterData == CharacterDatas[i])
             {
                 selectedCharacterIndex = i;
                 break;
             }
         }
-
         PlayerPrefs.SetInt("SelectedCharacterIndex", selectedCharacterIndex);
-        SceneManager.LoadSceneAsync("DemoPrincipalScene", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Main Scene", LoadSceneMode.Single);
     }
 }

@@ -114,7 +114,7 @@ public class PlayerCompanion_Weapon : MonoBehaviour
 
             BulletFX bulletFX = bulletFXPool.Get();
             InstantiateBulletHoles(bulletFX, raycastHit, shotCharacter);
-            if(shotCharacter != null && shotCharacter.characterManager != characterManager)
+            if(shotCharacter != null && shotCharacter.Character != characterManager)
             {
                 shotCharacter.TakeDamage(damageValue, AttackType.Heavy);
             }

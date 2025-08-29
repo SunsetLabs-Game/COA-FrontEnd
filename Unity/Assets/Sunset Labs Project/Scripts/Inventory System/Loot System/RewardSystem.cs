@@ -1,75 +1,127 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RewardSystem : MonoBehaviour
 {
-    private ItemBox selectedBox;
-    private PickableObject pickedItem;
+    public static RewardSystem Instance { get; private set; }
 
-    public bool hasFinished { get; private set; }
-    public RewardBox rewardBox {  get; private set; }
+    private LootBox lootBox;
+    public bool HasFinished { get; private set; }
+    public RewardBox Reward {  get; private set; }
 
-    [SerializeField] private int rate; //Can Be Used To Guage What Item Box To Reward
-    [SerializeField] private ItemBox[] itemBoxes;
+    [Header("Reward Parameters")]
+    [SerializeField] private LootBox[] lootBoxes;
+    [SerializeField] private Transform spawnPoint;
+
+    [Header("Reward UI")]
     [SerializeField] private NotificationPanel notifPanel;
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
-        hasFinished = false;
-        rewardBox = new RewardBox();
-        DuelManager.Instance.SetRewardSystem(this);
+        HasFinished = false;
+        Reward = new RewardBox();
+
+        int rate = Random.Range(3, 8);
+        lootBox = Instantiate(GetRandomBox(rate), spawnPoint);
     }
 
-    public IEnumerator HandleFillUpRewardBox(DuelState duelState)
+    public LootBox GetRandomBox(int maxRate)
     {
-        hasFinished = false;
-        bool isDraw = (duelState == DuelState.Draw);
-        selectedBox = LootSystem.GetRandomBox(rate, selectedBox, itemBoxes);
-        int itemCount = (isDraw) ? 2 : Random.Range(selectedBox.RewardBoxSize.minValue, selectedBox.RewardBoxSize.maxValue);
-
-        if(rewardBox.itemsList.Count < itemCount)
+        int random;
+        List<int> unExcludedIndex = new();
+        for (int i = 0; i < lootBoxes.Length; i++)
         {
-            while (rewardBox.itemsList.Count < itemCount - 1)
+            LootBox box = lootBoxes[i];
+            if (box == null || box.Rate > maxRate)
             {
-                FillRewardBox(ItemType.Collectible);
+                continue;
             }
-            FillRewardBox(ItemType.Currency);
+            unExcludedIndex.Add(i);
+        }
+        random = Random.Range(0, unExcludedIndex.Count);
+        LootBox selectedItem = lootBoxes[unExcludedIndex[random]];
+        return selectedItem;
+    }
+
+    public IEnumerator HandleReward(CharacterManager character, DuelState state)
+    {
+        if (state != DuelState.Lost)
+        {
+            yield return new WaitForSeconds(3.5f);
+            FillUpBox(character, state);
+            yield return new WaitUntil(() => HasFinished);
+
+            Reward.HandleRewarding();
+            yield return new WaitUntil(() => Reward.FinishedCleaning);
         }
 
-        yield return new WaitUntil(() => rewardBox.itemsList.Count >= itemCount);
-        rewardBox.CleanBox();
-
-        yield return new WaitUntil(() => rewardBox.FinishedCleaning);
-
-        string notification = $"Congratulations You Have Won {rewardBox.boxname}";
-        notifPanel.ShowNotification(notification, selectedBox, rewardBox);
-
-        yield return new WaitUntil(() => notifPanel.gameObject.activeSelf != true);
-        hasFinished = true;
+        state = DuelState.None;
+        if (character.mentalState == CombatMentalState.Friendly)
+        {
+            HasFinished = false;
+            LevelLoader.HandleLoadLevel("Main Scene", null, this);
+        }
     }
 
-    private void FillRewardBox(ItemType itemType)
+    private void FillUpBox(CharacterManager character, DuelState state)
     {
-        int min, max;
-        PickableObject[] items;
-
-        if (itemType == ItemType.Currency)
+        if (character.mentalState != CombatMentalState.Friendly)
         {
-            items = selectedBox.CurrencyItems;
-            min = selectedBox.CurrencyCountSize.minValue; 
-            max = selectedBox.CurrencyCountSize.maxValue;
+            FillLootBoxWithCharacter();
         }
         else
         {
-            items = selectedBox.CollectibleItems;
-            min = selectedBox.CollectibleCountSize.minValue;
-            max = selectedBox.CollectibleCountSize.maxValue;
+            lootBox.FillLootBoxRandomly();
         }
+        StartCoroutine(HandleFillUpRewardBox(state));
+    }
 
-        int random = Random.Range(min, max);
-        pickedItem = LootSystem.GetRandomItem(pickedItem, items, selectedBox);
+    private void FillLootBoxWithCharacter()
+    {
+        lootBox.ItemClasses.Clear();
+        CombatManager combat = CombatManager.Instance;
 
-        ItemClass reward = new(random, pickedItem.ItemObject.objectPrefab);
-        rewardBox.FillUpBox(selectedBox, reward);
+        int itemCount = combat.MercenaryWeapons.Length;
+        for (int i = 0; i < itemCount; i++)
+        {
+            PickableObject pickObj = combat.MercenaryWeapons[i];
+            ItemClass item = new(1, pickObj);
+            lootBox.ItemClasses.Add(item);
+        }
+        lootBox.AddCurrencies(itemCount + 1);
+    }
+
+    private IEnumerator HandleFillUpRewardBox(DuelState duelState)
+    {
+        HasFinished = false;
+        bool isDraw = (duelState == DuelState.Draw);
+
+        Reward.CleanBox();
+        foreach(ItemClass item in lootBox.ItemClasses)
+        {
+            Reward.AddItemToBox(item);
+        }
+        yield return new WaitUntil(() => Reward.itemsList.Count >= lootBox.ItemClasses.Count);
+
+        ItemBox selectedBox = lootBox.SelectedBox;
+        string notification = $"Congratulations You Have Won {selectedBox.name}";
+        notifPanel.ShowNotification(notification, selectedBox, Reward);
+
+        yield return new WaitUntil(() => notifPanel.gameObject.activeSelf != true);
+        HasFinished = true;
+        Destroy(lootBox.gameObject);
+        int rate = Random.Range(3, 8);
+        lootBox = Instantiate(GetRandomBox(rate), spawnPoint);
     }
 }

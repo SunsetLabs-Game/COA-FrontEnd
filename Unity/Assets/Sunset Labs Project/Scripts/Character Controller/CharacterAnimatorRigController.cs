@@ -3,7 +3,7 @@ using UnityEngine.Animations.Rigging;
 
 public class CharacterAnimatorRigController : MonoBehaviour
 {
-    protected Transform weaponRestIK;
+    private Rig[] rigLayers;
     protected CharacterManager characterManager;
 
     [Header("Stats")]
@@ -24,6 +24,7 @@ public class CharacterAnimatorRigController : MonoBehaviour
 
     protected virtual void Awake()
     {
+        rigLayers = GetComponentsInChildren<Rig>();
         rigBuilder = GetComponentInParent<RigBuilder>();
         characterManager = GetComponentInParent<CharacterManager>();
     }
@@ -35,8 +36,6 @@ public class CharacterAnimatorRigController : MonoBehaviour
 
     public void SetTwoBoneIKConstraint(Transform weaponGrip, Transform weaponRest)
     {
-        weaponRestIK = weaponRest;
-
         LeftHandIKConstraint.data.target = weaponRest;
         RightHandIKConstraint.data.target = weaponGrip;
 
@@ -59,11 +58,14 @@ public class CharacterAnimatorRigController : MonoBehaviour
         rigBuilder.Build();
     }
 
-    public void StopAllRigs()
+    public void SetRigs(bool status)
     {
-        HandIKConstraints.weight = 0.0f;
-        BodyAimConstraints.weight = 0.0f;
-        WeaponAimConstraint.weight = 0.0f;
+        int weight = (status)? 1 : 0;
+        foreach(var rig in rigLayers)
+        {
+            rig.weight = weight;
+        }
+        rigBuilder.Build();
     }
 
     private void Lock_In(float delta)
@@ -71,7 +73,7 @@ public class CharacterAnimatorRigController : MonoBehaviour
         float moveDuration = delta / aimDuration;
         WeaponManager currentWeapon = characterManager.CombatManager.CurrentWeapon;
 
-        if (currentWeapon == null || currentWeapon.type == WeaponType.Melee || weaponRestIK == null)
+        if (currentWeapon == null || currentWeapon.type == WeaponType.Melee)
         {
             return;
         }
@@ -79,7 +81,7 @@ public class CharacterAnimatorRigController : MonoBehaviour
         if (characterManager.isLockedIn)
         {
             WeaponAimConstraint.weight += moveDuration;
-            weaponRestIK.localPosition = Vector3.MoveTowards(weaponRestIK.localPosition, currentWeapon.RestLockedPosition, moveDuration);
+            LeftHandIKConstraint.weight += moveDuration;
             return;
         }
 
@@ -87,10 +89,10 @@ public class CharacterAnimatorRigController : MonoBehaviour
         if (characterManager.isAttacking)
         {
             WeaponAimConstraint.weight = 1.0f;
-            weaponRestIK.localPosition = currentWeapon.RestLockedPosition;
+            LeftHandIKConstraint.weight = 1.0f;
             return;
         }
         WeaponAimConstraint.weight -= moveDuration;
-        weaponRestIK.localPosition = Vector3.MoveTowards(weaponRestIK.localPosition, currentWeapon.RestOriginalPosition, moveDuration);
+        LeftHandIKConstraint.weight -= Mathf.Max(moveDuration, 0.55f);
     }
 }

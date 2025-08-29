@@ -40,6 +40,12 @@ public class CombatState : AIState
         CharacterAnim animManager = characterManager.AnimatorManagaer;
         CharacterMovement moveManager = characterManager.MovementManager;
 
+        //Initialize FirstWeapon
+        if(characterManager.CombatManager.CurrentWeapon == null)
+        {
+            SwapWeapon(characterManager);
+        }
+
         if (characterManager.performingAction || characterManager.Target == null)
         {
             animManager.SetBlendTreeParameter(0f, 0f, false, Time.deltaTime);
@@ -50,8 +56,24 @@ public class CombatState : AIState
         {
             agent.enabled = true;
         }
-        moveManager.RotateTowardsTarget();
 
+        if (characterManager.hasAssignment)
+        {
+            animManager.SetBlendTreeParameter(0f, 0f, false, Time.deltaTime);
+            characterManager.Assignment?.Invoke();
+        }
+
+        if(DialogueManager.Instance != null && DialogueManager.Instance.dialogueIsPlaying)
+        {
+            return this;
+        }
+
+        bool canSwap = (Random.Range(0, 10) > 8);
+        if (canSwap)
+        {
+            SwapWeapon(characterManager);
+        }
+        moveManager.RotateTowardsTarget();
         if(hasAttack != true)
         {
             GetOffensiveActions(characterManager);
@@ -95,6 +117,15 @@ public class CombatState : AIState
         return 0.5f;
     }
 
+    private void SwapWeapon(CharacterManager character)
+    {
+        CharacterCombat combat = character.CombatManager;
+        WeaponManager weapon = GameObjectTool.GetRandomExcluding(combat.CurrentWeapon, combat.enemyPossibleWeapons);
+
+        combat.enemyPossibleWeapons.ForEach(x => x.gameObject.SetActive(x == weapon));
+        weapon.Initialize(character.MovementManager.CameraObject, character);
+        combat.AssignWeapon(weapon);
+    }
 
     protected override void ResetStateParameters(CharacterManager character)
     {

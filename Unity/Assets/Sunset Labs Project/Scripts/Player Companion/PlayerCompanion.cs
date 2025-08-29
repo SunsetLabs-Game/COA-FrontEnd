@@ -10,11 +10,15 @@ public class PlayerCompanion : MonoBehaviour
     private PlayerCompanion_Combat combat;
     public bool CombatMode { get; private set; }
     public Transform FollowTarget { get; private set; }
+    public CharacterManager FollowCharacter { get; private set; }
 
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
-    public CharacterManager FollowCharacter { get; private set; }
+
+    [Header("Status")]
+    public bool hasViolentTarget;
+    public CombatMentalState mentalState = CombatMentalState.Friendly;
 
     [Header("Offsets")]
     [SerializeField] private BoundFloat heightOffset;
@@ -46,7 +50,8 @@ public class PlayerCompanion : MonoBehaviour
 
     private void Update()
     {
-        if (FollowCharacter == null)
+        FollowTarget = (hasViolentTarget && combat.EnemyTarget != null) ? combat.EnemyTarget.transform : FollowCharacter.transform;
+        if (FollowCharacter == null || DialogueManager.Instance.dialogueIsPlaying)
         {
             return;
         }
@@ -60,7 +65,6 @@ public class PlayerCompanion : MonoBehaviour
     public void SetFollowCharacter(CharacterManager character)
     {
         FollowCharacter = character;
-        FollowTarget = FollowCharacter.transform;
     }
 
     private void HandleMovement(float delta)
@@ -81,7 +85,7 @@ public class PlayerCompanion : MonoBehaviour
 
             if (targetDir == Vector3.zero)
             {
-                targetDir = transform.forward;
+                _ = transform.forward;
             }
         }
         return FollowTarget.forward;

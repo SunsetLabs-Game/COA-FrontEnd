@@ -7,7 +7,7 @@ public class InventoryManagerPanel_UI : MonoBehaviour
     private bool hasInitialized;
     
     private float inactivityTimer;
-    public bool isMouseOverPanel { get; private set; }
+    public bool IsMouseOverPanel { get; private set; }
     
     public List<InventorySlotUI> currencySlotList { get;  private set; }
     public List<InventorySlotUI> collectiblesSlotList { get; private set; }
@@ -29,7 +29,7 @@ public class InventoryManagerPanel_UI : MonoBehaviour
 
     private void Awake()
     {
-        isMouseOverPanel = false;
+        IsMouseOverPanel = false;
         MainCamera = Camera.main;
         CanvasGrp = GetComponent<CanvasGroup>();
 
@@ -44,7 +44,6 @@ public class InventoryManagerPanel_UI : MonoBehaviour
         {
             return;
         }
-
         hasInitialized = true;
 
         DisablePanel();
@@ -54,7 +53,7 @@ public class InventoryManagerPanel_UI : MonoBehaviour
 
     private void Update()
     {
-        if(isMouseOverPanel)
+        if(IsMouseOverPanel)
         {
             inactivityTimer = 0.0f;
             return;

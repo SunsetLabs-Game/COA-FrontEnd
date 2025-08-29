@@ -7,6 +7,7 @@ public class CharacterData : ScriptableObject
     public string characterName;
 
     [field: Header("Display Parameters")]
-    [field: SerializeField] public Sprite displayImage { get; private set; }
-    [field: SerializeField] public CharacterAnimationController displayedCharacter { get; private set; }
+    [field: SerializeField] public Sprite DisplayImage { get; private set; }
+    [field: SerializeField] public CharacterManager PlayableCharacter { get; private set; }
+    [field: SerializeField] public CharacterAnimationController DisplayedCharacter { get; private set; }
 }

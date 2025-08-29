@@ -5026,6 +5026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   rotationSpeed: 20
+  hasViolentTarget: 0
+  mentalState: 0
   heightOffset:
     minValue: 1.35
     maxValue: 2
@@ -5052,12 +5054,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  companionState: 0
   inaccuracy: 0.35
   targetOffset: {x: 0, y: 0.75, z: 0}
   shieldHealth: 0
   shieldActiveTimer: 0
-  shootCoolDownTime: 5
+  shootCoolDownTime: 0.75
   weaponManager: {fileID: 0}
   enemyMask:
     serializedVersion: 2
@@ -5090,7 +5091,7 @@ MonoBehaviour:
   - {fileID: 331203003201142542}
   - {fileID: 8876110572597703137}
   bulletTrailPrefab: {fileID: 3987156027170035156, guid: 555c25e338ea1f040b32aba35196a448, type: 3}
-  damageValue: 3
+  damageValue: 1
   muzzlePoint: {fileID: 6867861014540275723}
 --- !u!1 &3476688479826248263
 GameObject:

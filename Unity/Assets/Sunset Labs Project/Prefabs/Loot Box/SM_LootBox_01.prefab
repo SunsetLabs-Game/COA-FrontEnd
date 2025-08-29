@@ -2434,9 +2434,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   f_Rdelay: 4
   f_Ddelay: 5
-  objList:
-  - {fileID: 7535120854099850126, guid: 5498d23839a23514c899897dd7f7b3aa, type: 3}
-  - {fileID: 3204676244864779087, guid: d74614649f62f234c91399a91e6561f3, type: 3}
+  <Rate>k__BackingField: 3
+  itemBoxes:
+  - {fileID: 11400000, guid: ea140b1fdfb3e4549822167733d7be64, type: 2}
+  - {fileID: 11400000, guid: 08db094558f41934994d2cdfe62d4c35, type: 2}
   panel: {fileID: 8609014251610212518}
   contentArray:
   - {fileID: 1393933996721914384}

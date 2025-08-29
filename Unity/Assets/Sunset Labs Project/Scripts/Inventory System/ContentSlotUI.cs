@@ -8,12 +8,10 @@ public class ContentSlotUI : MonoBehaviour
 {
     private float elapsed;
     private PickableObject selectedItem;
-    private WaitForSeconds imageShuffleDuration;
 
     private ItemClass finalReward;
     public bool hasRevealed {get; private set;}
-    private List<int> unexcludedItems = new List<int>();
-    private List<PickableObject> itemsList = new List<PickableObject>();
+    private List<PickableObject> itemsList = new();
 
     [Header("Item Properties")]
     [SerializeField] private ItemType itemType;
@@ -23,11 +21,6 @@ public class ContentSlotUI : MonoBehaviour
     [SerializeField] private Image itemIcon;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemCountUI;
-
-    private void Awake()
-    {
-        imageShuffleDuration = new WaitForSeconds(shuffleDuration);
-    }
 
     public void Initialize(ItemClass reward, PickableObject[] itemArray)
     {
@@ -45,23 +38,6 @@ public class ContentSlotUI : MonoBehaviour
         itemCountUI.text = count.ToString("00");
     }
 
-    private PickableObject RandomIcon(PickableObject exclude)
-    {
-        unexcludedItems.Clear();
-        for(int i = 0; i < itemsList.Count; i++)
-        {
-            if(itemsList[i] == exclude)
-            {
-                continue;
-            }
-            unexcludedItems.Add(i);
-        }
-
-        int random = Random.Range(0, unexcludedItems.Count);
-        int index = unexcludedItems[random];
-        return itemsList[index];
-    }
-
     public IEnumerator RevealRandomItem()
     {
         itemIcon.color = Color.white;
@@ -70,7 +46,7 @@ public class ContentSlotUI : MonoBehaviour
         while(elapsed < shuffleDuration)
         {
             int count = Random.Range(1, 26);
-            selectedItem = RandomIcon(selectedItem);
+            selectedItem = GetRandomExcluding(selectedItem);
             DisplayContent(count, selectedItem);
 
             yield return new WaitForSeconds(0.05f);
@@ -78,5 +54,24 @@ public class ContentSlotUI : MonoBehaviour
         }
         DisplayContent(finalReward.itemCount, finalReward.pickedObj);
         hasRevealed = true;
+    }
+
+    private PickableObject GetRandomExcluding(PickableObject exclude)
+    {
+        var indexList = new List<int>();
+        for (int i = 0; i < itemsList.Count; i++)
+        {
+            if (itemsList[i] == null || itemsList[i] == exclude)
+            {
+                continue;
+            }
+            indexList.Add(i);
+        }
+        if (indexList.Count == 0)
+        {
+            return itemsList[Random.Range(0,itemsList.Count)];
+        }
+        int rnd = Random.Range(0, indexList.Count);
+        return itemsList[indexList[rnd]];
     }
 }

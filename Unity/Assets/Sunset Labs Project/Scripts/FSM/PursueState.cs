@@ -20,8 +20,8 @@ public class PursueState : AIState
         {
             agent.enabled = true;
         }
-        moveManager.RotateTowardsTarget();
 
+        moveManager.RotateTowardsTarget();
         bool notClose = characterManager.DistanceToTarget >= agent.stoppingDistance;
         if(notClose)
         {
@@ -29,16 +29,8 @@ public class PursueState : AIState
             moveManager.MoveToDestination(1.0f, characterManager.PositionOfTarget);
             return this;
         }
-
-        if(characterManager.combatMode != true)
-        {
-            if (characterManager.hasReached != true)
-            {
-                characterManager.Assignment?.Invoke();
-            }
-            return this;
-        }
         characterManager.isMoving = false;
+        moveManager.RotateTowardsTarget();
         return SwitchState(characterManager, characterManager.Combat);
     }
 }

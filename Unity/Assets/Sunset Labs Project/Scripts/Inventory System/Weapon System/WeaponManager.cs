@@ -27,8 +27,6 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private int maxBullets;
     [SerializeField] private bool isShooting;
     [SerializeField] private Transform grip, rest;
-    [field: SerializeField] public Vector3 RestLockedPosition { get; private set; }
-    [field: SerializeField] public Vector3 RestOriginalPosition { get; private set; }
 
     [field: Header("Layer Masks")]
     [field: SerializeField] public LayerMask EnemyMask { get; private set; }
@@ -68,6 +66,7 @@ public class WeaponManager : MonoBehaviour
             {
                 shooterCam = character.CameraController.ShooterVirtualCamera;
             }
+            character.RigController.SetRigs(true);
             weaponRecoil.Initialize(cameraObject, impulseSource);
         }
         if (character != null) character.RigController.SetTwoBoneIKConstraint(grip, rest);

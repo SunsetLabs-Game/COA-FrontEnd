@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+
 public enum CharacterType
 {
     AI,
@@ -44,6 +45,7 @@ public class CharacterManager : MonoBehaviour
     public float DistanceToTarget { get;  private set; }
     public Vector3 PositionOfTarget { get; private set; }
     public Vector3 DirectionToTarget { get; private set; }
+    public UnityEngine.Pool.ObjectPool<CharacterManager> mySpawnPool;
 
     //Status
     [HideInInspector] public bool isDead;
@@ -59,13 +61,16 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public bool performingAction;
 
     [Header("Status")]
+    public bool canUpdate;
     public bool combatMode;
     public bool findTarget;
     public bool hasReached;
+    public bool hasAssignment;
     public Team currentTeam;
     public CharacterType characterType;
     [SerializeField] private float stopDistance;
     [SerializeField] private float sphereRadius;
+    public CombatMentalState mentalState = CombatMentalState.Friendly;
 
     [Header("Properties")]
     [SerializeField] private LayerMask targetMask;
@@ -106,25 +111,26 @@ public class CharacterManager : MonoBehaviour
 
                 CameraController.SetCameraTarget(CameraTarget);
             }
-            if(CharacterInventoryManager.Instance != null) CharacterInventoryManager.Instance.SetCharacterManager(this);
+            if (CharacterInventoryManager.Instance != null) CharacterInventoryManager.Instance.SetCharacterManager(this);
         }
         else
         {
             Agent = GetComponentInChildren<NavMeshAgent>();
             if (Agent == null)
             {
-                GameObject aiObject = new();
+                GameObject aiObject = new("NavMesh Agent");
                 aiObject.transform.SetParent(transform);
-
-                gameObject.AddComponent<DialogueTrigger>();
                 Agent = aiObject.AddComponent<NavMeshAgent>();
 
-                InitializeStates();
                 Agent.stoppingDistance = stopDistance;
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
                 aiObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             }
+            InitializeStates();
+            gameObject.AddComponent<DialogueTrigger>();
         }
         StatsManager.ResetStats();
+        RigController.SetRigs(false);
     }
 
     //Character Type Based Components
@@ -140,6 +146,19 @@ public class CharacterManager : MonoBehaviour
             return;
         }
 
+        if(characterType == CharacterType.Player)
+        {
+            if (DialogueManager.Instance != null && DialogueManager.Instance.dialogueIsPlaying == true)
+            {
+                return;
+            }
+        }
+
+        if (canUpdate != true && characterType == CharacterType.AI)
+        {
+            return;
+        }
+
         float delta = Time.deltaTime;
         isGrounded = Controller.isGrounded;
 
@@ -147,7 +166,6 @@ public class CharacterManager : MonoBehaviour
         if (characterType == CharacterType.Player)
         {
             PlayerInput.InputManager_Update();
-
             InteractionScript.InteractionUpdate();
             isLockedIn = CombatManager.HasGun() && PlayerInput.lockedInput;
         }
@@ -156,7 +174,6 @@ public class CharacterManager : MonoBehaviour
         {
             HandleStateChange();
         }
-  
         SetTargetDetails();
         CombatManager.Combat_Update(delta);
         MovementManager.CharacterMovement_Update(delta);
@@ -288,7 +305,7 @@ public class CharacterManager : MonoBehaviour
 
     public void PatrolParametersSet(Vector3 patrolDestination)
     {
-        if(Target != null)
+        if (Target != null)
         {
             return;
         }
